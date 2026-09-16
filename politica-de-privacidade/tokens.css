@@ -1,0 +1,268 @@
+/* =====================================================================
+   PFR Engenharia e Consultoria — Design Tokens
+   Origem: identidade criada a partir da LOGO (sem manual de marca) +
+   conteúdo do briefing (engenharia técnica: Hidrossanitário/PPCI/
+   Segurança do Trabalho, BIM, Bauru/Marília/Jaú-SP).
+   Cores amostradas por pixel de /Marca/logo-original.png (ver
+   design-system.md § Origem para os valores medidos e a metodologia).
+   ===================================================================== */
+
+:root {
+  /* -------------------------------------------------------------
+     COR — NAVY (base institucional)
+     navy-900 = cor medida diretamente na logo (média de cluster
+     de pixels do ícone, tolerância ±15): rgb(14,42,63)
+  ------------------------------------------------------------- */
+  --pfr-navy-50:  #F0F5F9;
+  --pfr-navy-100: #E2ECF3;
+  --pfr-navy-200: #C6D8E7;
+  --pfr-navy-300: #9CBBD3;
+  --pfr-navy-400: #6D99BA;
+  --pfr-navy-500: #43769D;
+  --pfr-navy-600: #2C5A7D;
+  --pfr-navy-700: #1C4563;
+  --pfr-navy-800: #11324A;
+  --pfr-navy-900: #0E2A3F; /* navy da marca (medido) */
+  --pfr-navy-950: #081C2B;
+
+  /* -------------------------------------------------------------
+     COR — NEUTRO (cinza frio, mesma matiz do navy: hue 206°)
+     Existe para dar corpo a texto/superfície sem introduzir uma
+     matiz estranha à marca — é o navy dessaturado, não um cinza
+     genérico de biblioteca.
+  ------------------------------------------------------------- */
+  --pfr-neutral-0:   #FFFFFF;
+  --pfr-neutral-25:  #FCFDFD;
+  --pfr-neutral-50:  #F6F8F9;
+  --pfr-neutral-100: #EDF0F2;
+  --pfr-neutral-200: #DCE1E5;
+  --pfr-neutral-300: #C0C8CE;
+  --pfr-neutral-400: #949FA8;
+  --pfr-neutral-500: #6E7C87;
+  --pfr-neutral-600: #4F5E69;
+  --pfr-neutral-700: #36444E;
+  --pfr-neutral-800: #232F39;
+  --pfr-neutral-900: #152028;
+
+  /* -------------------------------------------------------------
+     COR — ÂMBAR (acento de assinatura — dose, nunca bloco)
+     amber-500 = cor medida diretamente na logo (média de cluster
+     do telhado do ícone, tolerância ±15): rgb(213,159,56)
+  ------------------------------------------------------------- */
+  --pfr-amber-50:  #FBF5E9;
+  --pfr-amber-100: #F5E7CC;
+  --pfr-amber-200: #ECD2A2;
+  --pfr-amber-300: #E2BD78;
+  --pfr-amber-400: #DBAD57;
+  --pfr-amber-500: #D59F39; /* âmbar da marca (medido) */
+  --pfr-amber-600: #C18A25;
+  --pfr-amber-700: #9E701A;
+  --pfr-amber-800: #7C5713;
+
+  /* -------------------------------------------------------------
+     COR — VERMELHO DA LOGO (NÃO USAR NA INTERFACE)
+     Documentado só para rastreabilidade. Fica restrito à marca
+     (ícone/wordmark). Nunca em botão, texto, fundo, ícone de UI.
+  ------------------------------------------------------------- */
+  --pfr-logo-red-DO-NOT-USE-IN-UI: #C52324;
+
+  /* -------------------------------------------------------------
+     SEMÂNTICOS — papéis (o que o front-end deve consumir)
+  ------------------------------------------------------------- */
+  --color-bg-page:        var(--pfr-neutral-0);
+  --color-bg-subtle:      var(--pfr-neutral-50);
+  --color-bg-muted:       var(--pfr-neutral-100);
+  --color-bg-inverse:     var(--pfr-navy-900);
+  --color-bg-inverse-alt: var(--pfr-navy-950);
+
+  --color-text-primary:   var(--pfr-navy-900);
+  --color-text-secondary: var(--pfr-neutral-700);
+  --color-text-muted:     var(--pfr-neutral-500);
+  --color-text-on-dark:        var(--pfr-neutral-0);
+  --color-text-on-dark-muted:  var(--pfr-neutral-300);
+
+  --color-border-subtle: var(--pfr-neutral-200);
+  --color-border-default: var(--pfr-neutral-300);
+  --color-border-strong: var(--pfr-navy-700);
+
+  --color-accent:            var(--pfr-amber-500); /* uso em dose: número, ícone, sublinha, CTA-bg */
+  --color-accent-hover:      var(--pfr-amber-600);
+  --color-accent-active:     var(--pfr-amber-700);
+  --color-accent-text-on-light: var(--pfr-amber-800); /* link/texto âmbar sobre fundo claro — AA garantido */
+  --color-accent-text-on-dark:  var(--pfr-amber-400); /* número/destaque âmbar sobre navy — AA garantido */
+
+  /* Botão primário (CTA): fundo âmbar, texto navy — nunca texto branco em âmbar (falha AA) */
+  --color-button-primary-bg:        var(--pfr-amber-500);
+  --color-button-primary-bg-hover:  var(--pfr-amber-600);
+  --color-button-primary-bg-active: var(--pfr-amber-700);
+  --color-button-primary-text:      var(--pfr-navy-950);
+
+  /* Botão secundário/outline sobre claro */
+  --color-button-secondary-border: var(--pfr-navy-700);
+  --color-button-secondary-text:   var(--pfr-navy-900);
+
+  /* Botão sobre fundo escuro (hero) */
+  --color-button-on-dark-border: var(--pfr-neutral-0);
+  --color-button-on-dark-text:   var(--pfr-neutral-0);
+
+  --color-focus-ring: var(--pfr-amber-500);
+
+  /* Overlay do hero full-bleed (imagem + overlay navy, nunca preto puro) */
+  --overlay-hero-top:    rgba(8, 28, 43, 0.15);
+  --overlay-hero-bottom: rgba(8, 28, 43, 0.72);
+
+  /* -------------------------------------------------------------
+     TIPOGRAFIA
+     Display/títulos: Archivo — grotesco geométrico de traço
+     quadrado/pesado, ecoa os terminais retos e as caixas cheias
+     do wordmark "PFR" da logo.
+     Corpo/UI: IBM Plex Sans — grotesco técnico (desenhado para
+     contexto de engenharia/institucional), sóbrio, sem a
+     geometria "arredondada de startup".
+     (ver design-system.md § Tipografia para a justificativa e a
+     política de fallback caso a fonte não carregue)
+  ------------------------------------------------------------- */
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --font-weight-display-bold:  700;
+  --font-weight-display-black: 800;
+  --font-weight-body-regular:  400;
+  --font-weight-body-medium:   500;
+  --font-weight-body-semibold: 600;
+
+  /* Escala tipográfica (base 16px) */
+  --text-xs:   0.75rem;   /* 12px — legenda, metadado */
+  --text-sm:   0.875rem;  /* 14px — texto auxiliar, label */
+  --text-base: 1rem;      /* 16px — corpo */
+  --text-lg:   1.125rem;  /* 18px — corpo destacado, lead */
+  --text-xl:   1.25rem;   /* 20px — subtítulo pequeno */
+  --text-2xl:  1.5rem;    /* 24px — H4 */
+  --text-3xl:  1.875rem;  /* 30px — H3 */
+  --text-4xl:  2.25rem;   /* 36px — H2 */
+  --text-5xl:  3rem;      /* 48px — H1 seção */
+  --text-6xl:  3.75rem;   /* 60px — H1 hero (mobile-tablet) */
+  --text-7xl:  4.5rem;    /* 72px — H1 hero (desktop grande) */
+
+  --leading-tight:  1.1;   /* títulos display */
+  --leading-snug:   1.3;   /* subtítulos */
+  --leading-normal: 1.6;   /* corpo de texto */
+  --leading-relaxed: 1.75; /* corpo longo, parágrafos técnicos */
+
+  --tracking-tight: -0.01em; /* display grande */
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;  /* uppercase pequeno (labels, eyebrow) */
+
+  /* -------------------------------------------------------------
+     ESPAÇAMENTO (escala base 4px)
+  ------------------------------------------------------------- */
+  --space-1:  0.25rem;  /* 4px */
+  --space-2:  0.5rem;   /* 8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.25rem;  /* 20px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* Respiro entre seções — "muito respiro" é preferência fixa do usuário */
+  --space-section-y-mobile: var(--space-20);  /* 80px */
+  --space-section-y-desktop: var(--space-32); /* 128px */
+
+  /* -------------------------------------------------------------
+     RAIOS — sóbrios, quase retos (a logo não tem uma única curva:
+     telhados e volumes são todos angulares). Nada de raio grande
+     tipo "app consumer".
+  ------------------------------------------------------------- */
+  --radius-none: 0;
+  --radius-sm:   0.25rem; /* 4px  — inputs pequenos, tags */
+  --radius-md:   0.375rem;/* 6px  — botões */
+  --radius-lg:   0.5rem;  /* 8px  — cards */
+  --radius-xl:   0.75rem; /* 12px — cards grandes/painéis (uso raro) */
+  --radius-full: 999px;   /* pill — badge/tag numérica, uso pontual */
+
+  /* -------------------------------------------------------------
+     SOMBRAS — discretas, tingidas de navy (não preto puro), papel
+     de separar plano, não de decorar.
+  ------------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px 0 rgba(14, 42, 63, 0.06);
+  --shadow-md: 0 4px 8px -2px rgba(14, 42, 63, 0.10), 0 2px 4px -2px rgba(14, 42, 63, 0.06);
+  --shadow-lg: 0 12px 24px -4px rgba(14, 42, 63, 0.14), 0 4px 8px -4px rgba(14, 42, 63, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(213, 159, 57, 0.45); /* halo do focus ring âmbar */
+
+  /* -------------------------------------------------------------
+     GRID / CONTAINER
+  ------------------------------------------------------------- */
+  --container-max: 1280px;
+  --container-padding-mobile: 1.25rem;  /* 20px */
+  --container-padding-tablet: 2rem;     /* 32px */
+  --container-padding-desktop: 4rem;    /* 64px */
+  --grid-columns: 12;
+  --grid-gutter: 1.5rem; /* 24px */
+
+  /* -------------------------------------------------------------
+     INTERAÇÃO — transições e estados
+  ------------------------------------------------------------- */
+  --transition-fast: 120ms ease-out;
+  --transition-base: 200ms ease-out;
+  --transition-slow: 320ms ease-out;
+
+  --opacity-disabled: 0.45;
+}
+
+/* =====================================================================
+   Estados de interação de referência (aplicar via classes utilitárias
+   ou componentes do front-end; tokens acima já cobrem os valores)
+   ===================================================================== */
+
+/* Botão primário (CTA em âmbar, texto navy escuro) */
+.pfr-btn-primary {
+  background: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base), transform var(--transition-fast);
+}
+.pfr-btn-primary:hover  { background: var(--color-button-primary-bg-hover); }
+.pfr-btn-primary:active { background: var(--color-button-primary-bg-active); }
+.pfr-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+.pfr-btn-primary:disabled,
+.pfr-btn-primary[aria-disabled="true"] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+/* Botão secundário (outline, sobre fundo claro) */
+.pfr-btn-secondary {
+  background: transparent;
+  color: var(--color-button-secondary-text);
+  border: 1.5px solid var(--color-button-secondary-border);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+.pfr-btn-secondary:hover { background: var(--pfr-navy-50); }
+.pfr-btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* Link de texto (sobre fundo claro) */
+.pfr-link {
+  color: var(--color-accent-text-on-light);
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+.pfr-link:hover { color: var(--pfr-amber-700); }
+
+/* Foco visível padrão para qualquer elemento interativo */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}

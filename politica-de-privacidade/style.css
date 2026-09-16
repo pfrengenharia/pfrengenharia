@@ -1,0 +1,1025 @@
+/* =====================================================================
+   PFR Engenharia e Consultoria — LP Projeto Hidrossanitário
+   Consome os tokens de /css/tokens.css (etapa 3). Camada rica de
+   animação (etapa 7) ligada nos GANCHOS do markup (data-reveal,
+   data-parallax, .hero-media, data-underline, data-count) — ver bloco
+   "ANIMAÇÃO — camada rica" abaixo e /js/animations.js.
+   ===================================================================== */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  /* NUNCA overflow-x:hidden no body (quebra position:sticky dos filhos) */
+  overflow-x: clip;
+  scroll-behavior: smooth;          /* scroll NATIVO, sem momentum/inércia */
+  /* Tem de ser >= altura do header fixo, senão a âncora leva o título para
+     debaixo dele. Header = logo (72) + padding vertical (2x16) = 104. */
+  scroll-padding-top: 120px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* =====================================================================
+   ANIMAÇÃO — camada rica (etapa 7)
+   Regra de segurança: o estado por padrão de todo gancho é o ESTADO
+   FINAL, visível. Só quando /js/animations.js roda E não há
+   prefers-reduced-motion é que o <html> recebe a classe .motion-on —
+   e SÓ ENTÃO o CSS abaixo passa a escondê-lo antes do IntersectionObserver
+   revelar (classe .in). Sem JS, ou com reduced-motion, nada se aplica:
+   o conteúdo nasce visível. Isso é a 1ª trava contra o clássico "conteúdo
+   que some para sempre se o JS falhar". A 2ª trava é a rede de tempo em
+   animations.js (força .in em tudo depois de 2.5s).
+   Só transform/opacity (nunca top/height/width) — exceção única e
+   deliberada: o accordion do FAQ, que é um gesto do usuário, não um
+   reveal de scroll, então não corre o risco de "conteúdo preso".
+   ===================================================================== */
+.motion-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease-out, transform .5s cubic-bezier(.16, 1, .3, 1);
+  will-change: opacity, transform;
+}
+.motion-on [data-reveal].in { opacity: 1; transform: none; }
+.motion-on [data-reveal][data-delay="1"] { transition-delay: .08s; }
+.motion-on [data-reveal][data-delay="2"] { transition-delay: .16s; }
+.motion-on [data-reveal][data-delay="3"] { transition-delay: .24s; }
+
+/* CTAs nunca deslizam, só esmaecem: um botão é alvo de clique e (no hero)
+   fica perto do banner de cookies — zero risco de invadir a área dele
+   enquanto aguarda o IntersectionObserver revelar. */
+.motion-on .hero__actions[data-reveal] { transform: none; }
+
+/* Hero — zoom invertido no modelo BIM (elemento assinatura da página) */
+.motion-on .hero-media {
+  transform: scale(1.08);
+  transition: transform 1.4s cubic-bezier(.16, 1, .3, 1);
+  will-change: transform;
+}
+.motion-on .hero-media.in { transform: scale(1); }
+
+/* Sequência do hero: a imagem abre o movimento e os elementos entram DEPOIS,
+   um a um. Sem estes atrasos, o IntersectionObserver revela o texto no mesmo
+   instante em que o zoom começa e as duas coisas se atropelam — era o que
+   fazia o hero parecer quebrado. Os atrasos vencem os genéricos por
+   especificidade (2 classes + 2 atributos). */
+.motion-on .hero__col [data-reveal]                  { transition-delay: .45s; }
+.motion-on .hero__col [data-reveal][data-delay="1"]  { transition-delay: .62s; }
+.motion-on .hero__col [data-reveal][data-delay="2"]  { transition-delay: .79s; }
+.motion-on .hero__col [data-reveal][data-delay="3"]  { transition-delay: .96s; }
+/* o sublinhado do "BIM" fecha a sequência, depois do H1 já ter entrado */
+.motion-on .hero__col [data-underline] { transition: background-size .6s ease-out 1.15s; }
+
+/* Título — sublinhado que desenha. Estado por padrão já é o traço
+   completo (sem JS, o "BIM" já nasce sublinhado, só sem o desenho). */
+[data-underline] {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 3px;
+}
+.motion-on [data-underline] {
+  background-size: 0 3px;
+  transition: background-size .6s ease-out .15s;
+}
+.motion-on [data-underline].in { background-size: 100% 3px; }
+
+/* Comparativo — cascata nos itens + realce no ícone ao entrar */
+.motion-on .vs__list li {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease-out, transform .4s cubic-bezier(.16, 1, .3, 1);
+}
+.motion-on .vs__list li .vs__mark {
+  transform: scale(.6);
+  transition: transform .35s cubic-bezier(.16, 1, .3, 1);
+}
+.motion-on .vs__card.in .vs__list li { opacity: 1; transform: none; }
+.motion-on .vs__card.in .vs__list li .vs__mark { transform: scale(1); }
+.motion-on .vs__card.in .vs__list li:nth-child(1),
+.motion-on .vs__card.in .vs__list li:nth-child(1) .vs__mark { transition-delay: .05s; }
+.motion-on .vs__card.in .vs__list li:nth-child(2),
+.motion-on .vs__card.in .vs__list li:nth-child(2) .vs__mark { transition-delay: .14s; }
+.motion-on .vs__card.in .vs__list li:nth-child(3),
+.motion-on .vs__card.in .vs__list li:nth-child(3) .vs__mark { transition-delay: .23s; }
+
+body {
+  margin: 0;
+  background: var(--color-bg-page);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  text-wrap: balance;               /* evita palavra órfã sem <br> forçado */
+}
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* `height:auto` é obrigatório: os atributos width/height do HTML entram como
+   presentational hint e vencem o aspect-ratio do CSS sem isso. */
+img, svg, video { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+
+:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ---------- Container único (mesma largura em TODAS as seções) ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-mobile);
+}
+@media (min-width: 768px)  { .container { padding: 0 var(--container-padding-tablet); } }
+@media (min-width: 1200px) { .container { padding: 0 var(--container-padding-desktop); } }
+
+/* ---------- Ritmo de seção ---------- */
+.section { padding: var(--space-section-y-mobile) 0; }
+@media (min-width: 900px) { .section { padding: var(--space-section-y-desktop) 0; } }
+
+.section--dark   { background: var(--pfr-navy-950); }
+.section--navy   { background: var(--color-bg-inverse); }
+
+/* Fundos de arte nas duas faixas escuras. A cor sólida continua embaixo: se a
+   imagem não carregar, o texto claro segue sobre navy, não sobre branco.
+   O véu por cima é o que garante o contraste medido — sem ele o contraste
+   passaria a depender do trecho da imagem que calhar atrás do texto. */
+#numeros, #orcamento { position: relative; isolation: isolate; }
+#numeros::before, #orcamento::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+#numeros::before  { background-image: linear-gradient(rgba(11, 33, 50, 0.55), rgba(11, 33, 50, 0.55)), url("/imagens/textura-numeros.webp"); }
+#orcamento::before { background-image: linear-gradient(90deg, rgba(8, 24, 38, 0.94) 0%, rgba(8, 24, 38, 0.86) 42%, rgba(8, 24, 38, 0.62) 100%), url("/imagens/fundo-cta-final.webp"); }
+.section--subtle { background: var(--color-bg-subtle); }
+
+.section--dark h2, .section--navy h2,
+.section--dark h3, .section--navy h3 { color: var(--color-text-on-dark); }
+.section--dark p,  .section--navy p  { color: var(--color-text-on-dark-muted); }
+
+/* ---------- Blocos de texto padrão ---------- */
+.eyebrow {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-body-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent-text-on-light);
+}
+.eyebrow--on-dark { color: var(--color-accent-text-on-dark); }
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 28px; height: 2px;
+  margin-right: var(--space-3);
+  vertical-align: 0.25em;
+  background: var(--color-accent);
+}
+
+.section__head { max-width: 44rem; margin-bottom: var(--space-12); }
+.section__title { font-size: clamp(1.75rem, 1.1rem + 2.6vw, var(--text-4xl)); }
+.section__intro {
+  margin-top: var(--space-5);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-8);
+  min-height: 52px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-body-semibold);
+  letter-spacing: 0.01em;
+  text-align: left;
+  transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+}
+.btn svg { flex: none; }
+
+/* CTA primário: fundo âmbar + texto navy-950.
+   Texto BRANCO sobre âmbar reprova AA (2.37) — nunca inverter. */
+.btn--primary {
+  background: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+}
+.btn--primary:hover  { background: var(--color-button-primary-bg-hover); }
+.btn--primary:active { background: var(--color-button-primary-bg-active); }
+
+.btn--ghost-dark {
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  color: var(--color-text-on-dark);
+}
+.btn--ghost-dark:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; }
+
+.btn--sm { min-height: 44px; padding: var(--space-3) var(--space-5); font-size: var(--text-sm); }
+
+/* O botão flutuante do Merlin não existe neste projeto: os CTAs vão direto para
+   o WhatsApp. A regra que pintava .merlin-button saiu junto. */
+
+/* =====================================================================
+   HEADER
+   ===================================================================== */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  padding: var(--space-4) 0;
+  /* Header TRANSPARENTE no topo, a pedido do usuário — mas a transparência é o
+     estado ADICIONADO por JS (.is-top), não o padrão. O padrão é sólido.
+     Motivo, medido: com transparente por padrão o menu branco dava 1.07:1 sobre
+     as seções claras. E o estado é alcançável de verdade: ao recarregar a página
+     já rolada, o navegador restaura o scroll e o header fica transparente sobre
+     seção clara até o app.js rodar. Invertido, o pior caso é seguro. */
+  background: rgba(14, 42, 63, 0.96);
+  /* Sem transição aqui de propósito. A transição vive só no .is-top, abaixo:
+     assim ENTRAR em transparente é suave, e VOLTAR a sólido é instantâneo.
+     Se fosse simétrico, uma rolagem rápida deixaria o menu branco desbotando
+     por ~200ms sobre a seção clara — transiente real, medido pelo harness. */
+}
+.header.is-solid {
+  background: rgba(14, 42, 63, 0.96);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+/* Só aqui o header fica transparente: no topo, onde o hero navy garante o
+   contraste do menu. Classe posta pelo app.js. */
+.header.is-top {
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+.header__inner { display: flex; align-items: center; gap: var(--space-6); }
+
+.header__logo { display: block; margin-right: auto; }
+/* 72px de altura (era 50). A proporção 677x653 do arquivo é mantida para a
+   marca não distorcer. Crescer a logo cresce o header, e o scroll-padding-top
+   do :root acompanha — senão o alvo de cada âncora para embaixo do header. */
+/* altura fixa + largura automática = proporção do arquivo preservada exatamente
+   (fixar os dois em inteiros dava 0.47% de distorção na marca) */
+.header__logo img { height: 72px; width: auto; }
+@media (max-width: 599px) { .header__logo img { height: 58px; } }
+
+.nav { display: none; }
+@media (min-width: 900px) {
+  .nav { display: flex; align-items: center; gap: var(--space-8); }
+}
+.nav__link {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-body-medium);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--color-text-on-dark);
+  padding: var(--space-2) 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.nav__link:hover { border-bottom-color: var(--color-accent); }
+
+.header__cta { display: none; }
+@media (min-width: 1024px) { .header__cta { display: inline-flex; } }
+
+.burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  margin-left: auto;
+  border-radius: var(--radius-md);
+  color: var(--color-text-on-dark);
+}
+@media (min-width: 900px) { .burger { display: none; } }
+.burger span { display: block; width: 22px; height: 2px; background: currentColor; position: relative; }
+.burger span::before, .burger span::after {
+  content: ""; position: absolute; left: 0; width: 22px; height: 2px; background: currentColor;
+}
+.burger span::before { top: -7px; }
+.burger span::after  { top: 7px; }
+
+/* Menu off-canvas */
+.drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 70;
+  width: min(88vw, 360px);
+  padding: calc(var(--space-20) + var(--space-4)) var(--space-6) var(--space-8);
+  background: var(--pfr-navy-950);
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  overflow-y: auto;
+}
+.drawer.is-open { transform: translateX(0); }
+.drawer__list { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-8); }
+.drawer__link {
+  display: block;
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-text-on-dark);
+  text-decoration: none;
+  font-size: var(--text-lg);
+}
+.drawer__close {
+  position: absolute; top: var(--space-4); right: var(--space-4);
+  width: 48px; height: 48px;
+  color: var(--color-text-on-dark);
+  font-size: 24px; line-height: 1;
+}
+.drawer .btn { width: 100%; justify-content: center; text-align: center; }
+
+.scrim {
+  position: fixed; inset: 0; z-index: 65;
+  background: rgba(8, 28, 43, 0.6);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+.scrim.is-open { opacity: 1; visibility: visible; }
+
+/* =====================================================================
+   HERO — full-bleed fullscreen, fundo em CSS (gradiente navy + malha)
+   + recorte BIM real à direita, teto de 1000px CSS de largura.
+   ===================================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background-color: var(--pfr-navy-900);
+  background-image:
+    linear-gradient(180deg, rgba(8, 28, 43, 0) 52%, rgba(8, 28, 43, 0.55) 82%, rgba(8, 28, 43, 0.92) 100%),
+    radial-gradient(76% 68% at 74% 38%, rgba(32, 74, 104, 0.98) 0%, rgba(24, 60, 87, 0.55) 42%, rgba(14, 42, 63, 0) 74%);
+}
+
+/* Malha técnica em CSS. Desligada desde que a arte gerada passou a trazer a
+   própria malha: duas grades sobrepostas embolam o fundo. Fica como reserva
+   caso a imagem do hero saia. */
+.hero__grid { display: none; }
+.hero__grid--css {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to right,  rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 60px);
+  -webkit-mask-image: radial-gradient(120% 100% at 60% 40%, #000 30%, rgba(0, 0, 0, 0.25) 100%);
+  mask-image: radial-gradient(120% 100% at 60% 40%, #000 30%, rgba(0, 0, 0, 0.25) 100%);
+}
+
+/* Arte do hero agora é FULL-BLEED: a imagem gerada já traz o fundo navy e a
+   malha técnica, então ela cobre a seção inteira em vez de ser um recorte
+   posicionado à direita. O gradiente do .hero continua embaixo como reserva
+   caso a imagem não carregue. O overscan vertical existe para o parallax
+   deslocar sem descobrir a borda. */
+.hero__media {
+  position: absolute;
+  z-index: 1;
+  inset: -3% 0;
+  transform: translateY(var(--parallax-y, 0px));
+  pointer-events: none;
+}
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ancorada à ESQUERDA de propósito. Medido: com 78% o recorte do cover comia
+     545px do lado esquerdo e a headline caía sobre a faixa 0.33–0.62 da arte,
+     a parte mais densa. Com 12% ela cai sobre a faixa ~0.10–0.39, que é o
+     espaço negativo que a imagem foi gerada para ter. */
+  object-position: 12% center;
+}
+
+/* Véu escuro da esquerda para o centro: garante o contraste do texto */
+.hero__veil {
+  position: absolute; inset: 0; z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    rgba(8, 28, 43, 0.94) 0%,
+    rgba(8, 28, 43, 0.88) 26%,
+    rgba(8, 28, 43, 0.58) 46%,
+    rgba(8, 28, 43, 0.16) 66%,
+    rgba(8, 28, 43, 0) 82%);
+}
+
+.hero__inner { position: relative; z-index: 4; padding-top: var(--space-20); padding-bottom: var(--space-16); }
+.hero__col { max-width: 40rem; }
+
+.hero__title {
+  font-size: clamp(2.125rem, 1.15rem + 4.1vw, var(--text-7xl));
+  font-weight: var(--font-weight-display-black);
+  color: var(--color-text-on-dark);
+}
+.hero__title .u { color: var(--color-accent-text-on-dark); }
+
+/* Segunda linha da promessa, em corpo menor e destacada em âmbar. Era a segunda
+   metade do H1; virou linha própria a pedido do usuário, para o H1 carregar só
+   o nome do serviço. Fica entre o H1 e o subhead na hierarquia: menor que o
+   título, maior e mais forte que o texto de apoio. */
+.hero__claim {
+  margin-top: var(--space-4);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-bold);
+  font-size: clamp(1.25rem, 0.85rem + 1.5vw, 2rem);
+  line-height: var(--leading-snug);
+  color: var(--color-accent-text-on-dark);
+}
+
+.hero__sub {
+  max-width: 34rem;
+  margin-top: var(--space-6);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-on-dark-muted);
+}
+.hero__actions { margin-top: var(--space-10); }
+
+@media (max-width: 899px) {
+  .hero { justify-content: flex-start; }
+  .hero__inner { order: 1; padding-top: calc(var(--space-24) + var(--space-4)); padding-bottom: 0; }
+  /* No mobile a arte continua full-bleed, mas o véu vira vertical e mais
+     fechado: com a coluna estreita o texto passa por cima da parte densa da
+     imagem, e o contraste é medido, não estimado. */
+  .hero__media img { object-position: 30% center; }
+  .hero__veil {
+    background: linear-gradient(180deg,
+      rgba(8, 28, 43, 0.92) 0%,
+      rgba(8, 28, 43, 0.86) 46%,
+      rgba(8, 28, 43, 0.72) 72%,
+      rgba(8, 28, 43, 0.62) 100%);
+  }
+  .hero__sub { font-size: var(--text-base); }
+}
+
+/* =====================================================================
+   DIFERENCIAIS — lista editorial numerada (NÃO grade 2x2 de cards)
+   ===================================================================== */
+.diff__layout { display: grid; gap: var(--space-12); }
+@media (min-width: 1024px) {
+  .diff__layout { grid-template-columns: 5fr 7fr; gap: var(--space-16); align-items: start; }
+  .diff__head { position: sticky; top: 140px; margin-bottom: 0; }
+}
+
+.edlist { border-top: 1px solid var(--color-border-subtle); }
+.edlist__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.25rem 1fr;
+  gap: var(--space-5);
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background var(--transition-base);
+}
+/* O sangramento do hover nunca pode passar do padding do container,
+   senão vira overflow horizontal nas larguras pequenas. */
+.edlist__item::before {
+  content: "";
+  position: absolute;
+  left: -16px; right: -16px; top: 0; bottom: 0;
+  z-index: -1;
+  background: var(--color-bg-subtle);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.edlist__item:hover::before { opacity: 1; }
+@media (min-width: 768px) { .edlist__item::before { left: -24px; right: -24px; } }
+
+.edlist__idx {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-display-black);
+  line-height: 1.2;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+.edlist__title { font-size: var(--text-xl); margin-bottom: var(--space-3); }
+.edlist__body p { color: var(--color-text-secondary); }
+
+@media (max-width: 480px) {
+  .edlist__item { grid-template-columns: 1fr; gap: var(--space-2); }
+}
+
+/* =====================================================================
+   METODOLOGIA — split imagem + texto sobre superfície escura
+   ===================================================================== */
+.split { display: grid; gap: var(--space-12); align-items: center; }
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1fr 1fr; gap: var(--space-16); }
+}
+.split__text > p + p { margin-top: var(--space-5); }
+.split__text .section__title { margin-bottom: var(--space-6); }
+.split__text p { font-size: var(--text-lg); line-height: var(--leading-relaxed); }
+
+.split__media { margin: 0; position: relative; }
+.split__media .media {
+  display: block;                    /* wrapper de mídia SEMPRE display:block */
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.split__media .media img { width: 100%; height: 100%; object-fit: cover; }
+.split__media::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 96px; height: 3px;
+  background: var(--color-accent);
+}
+
+/* =====================================================================
+   PORTFÓLIO — 2 grades (hidrossanitário 6, PPCI 5), 3 col / 2 col / 1 col
+   ===================================================================== */
+/* Cabeçalho de grupo: o portfólio traz duas frentes (hidrossanitário e PPCI)
+   sob o mesmo H2, cada uma com sua própria grade. */
+.folio__group { max-width: 44rem; margin-bottom: var(--space-8); }
+.folio + .folio__group { margin-top: var(--space-16); }
+.folio__grouptitle {
+  font-size: clamp(1.25rem, 1rem + 1vw, var(--text-2xl));
+  line-height: var(--leading-snug);
+}
+.folio__groupintro {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.folio { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+/* 540px (não 561px): no fim da faixa de 1 coluna, a coluna única (largura do
+   container) passa de 1.15x a resolução nativa do card portfolio-5 (440px) —
+   medido em @560px: 518/440 = 1.177x. Encurtar a faixa de 1 coluna evita o
+   upscale sem tocar no arquivo de imagem. */
+@media (min-width: 540px)  { .folio { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 901px)  { .folio { grid-template-columns: repeat(3, 1fr); gap: var(--space-8); } }
+
+.folio__card { position: relative; }
+.folio__media {
+  display: block;                    /* obrigatório: overflow em caixa inline não se aplica */
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-border-subtle);
+}
+.folio__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+.folio__card:hover .folio__media img { transform: scale(1.04); }
+
+.folio__title {
+  margin-top: var(--space-4);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-display-bold);
+  line-height: var(--leading-snug);
+}
+
+/* Botão de rótulo curto esticado sobre o card via ::after (nunca <button> com
+   <h3>/<p> dentro). O foco visível vai no ::after. */
+.folio__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-2) 0;
+  min-height: 36px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-body-semibold);
+  color: var(--color-accent-text-on-light);
+}
+.folio__btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+}
+.folio__btn:focus-visible { box-shadow: none; }
+.folio__btn:focus-visible::after { box-shadow: var(--shadow-focus); }
+
+/* =====================================================================
+   COMPARATIVO — exatamente 2 cards, centrados entre si
+   ===================================================================== */
+.vs { display: grid; gap: var(--space-6); align-items: center; }
+@media (min-width: 900px) { .vs { grid-template-columns: 1fr 1fr; gap: var(--space-8); } }
+
+.vs__card { border-radius: var(--radius-lg); }
+
+.vs__card--market {
+  padding: var(--space-6);
+  border: 2px dashed var(--color-border-default);
+  background: var(--color-bg-muted);
+  color: var(--pfr-neutral-600);
+}
+.vs__card--market .vs__cardtitle { color: var(--pfr-neutral-600); font-size: var(--text-lg); }
+.vs__card--market li { text-decoration: line-through; text-decoration-thickness: 1px; }
+
+.vs__card--brand {
+  padding: var(--space-16) var(--space-10) var(--space-20);
+  border: 1px solid var(--color-border-subtle);
+  border-top: 2px solid var(--color-accent);   /* filete de 2px no topo */
+  background: var(--pfr-neutral-0);
+  box-shadow: var(--shadow-lg);
+}
+.vs__card--brand .vs__cardtitle { font-size: var(--text-2xl); }
+.vs__card--brand li { color: var(--color-text-secondary); font-size: var(--text-lg); }
+
+.vs__cardtitle { margin-bottom: var(--space-6); }
+.vs__list li {
+  position: relative;
+  padding-left: var(--space-8);
+  padding-bottom: var(--space-5);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.vs__list li:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.vs__mark { position: absolute; left: 0; top: 2px; width: 18px; height: 18px; }
+.vs__card--brand .vs__mark { color: var(--color-accent-text-on-light); }
+.vs__card--market .vs__mark { color: var(--pfr-neutral-600); }
+
+/* =====================================================================
+   NÚMEROS — faixa navy full-bleed com destaque âmbar
+   ===================================================================== */
+.stats { display: grid; grid-template-columns: 1fr; gap: var(--space-10); }
+@media (min-width: 900px) { .stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-12); } }
+
+.stat { padding-top: var(--space-6); border-top: 2px solid rgba(219, 173, 87, 0.45); }
+.stat__num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.4rem + 3.4vw, var(--text-6xl));
+  font-weight: var(--font-weight-display-black);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-accent-text-on-dark);
+}
+.stat__label {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+  color: var(--color-text-on-dark-muted);
+}
+
+/* =====================================================================
+   ESCOPO E ATUAÇÃO — split editorial assimétrico sobre malha técnica clara
+   ===================================================================== */
+/* Malha quadriculada removida a pedido do usuário (10/08/2026). Com os cards de
+   serviço ganhando contorno próprio, a grade atrás virava ruído: duas famílias
+   de linhas finas disputando o mesmo espaço. O ::before saiu inteiro; o
+   position: relative fica, porque o .container empilha em cima dele. */
+.scope { position: relative; }
+.scope .container { position: relative; }
+.scope__layout { display: grid; gap: var(--space-10); }
+@media (min-width: 900px) {
+  .scope__layout { grid-template-columns: 5fr 7fr; gap: var(--space-16); align-items: start; }
+  /* a lista de serviços atravessa as duas colunas, abaixo do título e do texto */
+  .scope__layout > .svc { grid-column: 1 / -1; }
+}
+.scope__title { font-size: clamp(1.75rem, 1.1rem + 2.6vw, var(--text-4xl)); }
+.scope__body { border-left: 2px solid var(--color-accent); padding-left: var(--space-8); }
+.scope__body p { font-size: var(--text-lg); line-height: var(--leading-relaxed); }
+.scope__body p + p { margin-top: var(--space-6); }
+@media (max-width: 899px) { .scope__body { padding-left: var(--space-5); } }
+
+/* Lista de serviços. De propósito NÃO é grade de cards com ícone: os
+   Diferenciais já usam lista numerada e o Portfólio já usa card com imagem;
+   um terceiro bloco de cards deixaria a página com três seções de cara igual.
+   Aqui é lista técnica com filete, que é como um escritório de engenharia
+   apresenta escopo. */
+.svc {
+  margin-top: var(--space-12);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+@media (min-width: 700px)  { .svc { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .svc { grid-template-columns: repeat(3, 1fr); } }
+/* Card com ícone, a pedido do usuário. Para não virar a terceira seção com a
+   mesma cara (Diferenciais já é lista numerada, Portfólio já é card com foto),
+   este card não tem sombra nem preenchimento colorido: é contorno seco, com um
+   filete âmbar que só aparece no topo ao passar o mouse. */
+.svc__item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  background: var(--color-bg-page);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: border-color var(--transition-base);
+}
+.svc__item::before {
+  content: "";
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 2px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--color-accent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.svc__item:hover { border-color: var(--pfr-neutral-300); }
+.svc__item:hover::before { opacity: 1; }
+.svc__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px; height: 46px;
+  margin-bottom: var(--space-5);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--pfr-navy-700);
+  flex: 0 0 auto;
+}
+.svc__title {
+  font-size: var(--text-base);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-2);
+}
+/* A sigla é o que o cliente procura; vira etiqueta em vez de virar parêntese */
+.svc__sigla {
+  display: inline-block;
+  margin-left: var(--space-2);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-body-semibold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-accent-text-on-light);
+  vertical-align: 0.15em;
+  white-space: nowrap;
+}
+.svc__item p { font-size: var(--text-sm); line-height: var(--leading-normal); }
+
+/* =====================================================================
+   FAQ — accordion
+   ===================================================================== */
+.faq { border-top: 1px solid var(--color-border-subtle); }
+.faq__item { border-bottom: 1px solid var(--color-border-subtle); }
+.faq__q { margin: 0; }
+.faq__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  width: 100%;
+  padding: var(--space-6) 0;
+  min-height: 60px;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-display-bold);
+  line-height: var(--leading-snug);
+  color: var(--color-text-primary);
+}
+.faq__ico { flex: none; width: 20px; height: 20px; color: var(--color-accent-text-on-light); transition: transform var(--transition-base); }
+.faq__btn[aria-expanded="true"] .faq__ico { transform: rotate(45deg); }
+/* Abre/fecha com transição de max-height (gesto do usuário, não reveal de
+   scroll — controlado por /js/app.js, que lê a duração real da transição
+   e fecha de forma síncrona quando ela é ~0, sob reduced-motion). */
+.faq__panel { overflow: hidden; max-height: 0; transition: max-height .32s ease-out; }
+.faq__panel[hidden] { display: none; }
+.faq__panel p {
+  max-width: 52rem;
+  padding-bottom: var(--space-6);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+}
+
+/* =====================================================================
+   CTA FINAL
+   ===================================================================== */
+.final__inner { max-width: 46rem; }
+.final__title { font-size: clamp(1.875rem, 1.1rem + 3vw, var(--text-5xl)); margin-bottom: var(--space-6); }
+.final__body { font-size: var(--text-lg); line-height: var(--leading-relaxed); }
+.final__actions { margin-top: var(--space-10); }
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.footer { background: var(--pfr-navy-950); padding: var(--space-16) 0 var(--space-10); }
+.footer__grid { display: grid; gap: var(--space-10); }
+@media (min-width: 900px) { .footer__grid { grid-template-columns: 1.2fr 1fr 1fr; gap: var(--space-12); } }
+
+.footer__logo { display: block; }
+/* 62 -> 96px de altura. Largura automática para preservar a proporção exata do
+   arquivo (677x653): fixar os dois em inteiros distorce a marca. Só o rodapé
+   muda aqui; a do header segue em 72px. */
+.footer__logo img { height: 96px; width: auto; }
+@media (max-width: 599px) { .footer__logo img { height: 76px; } }
+.footer h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-body-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent-text-on-dark);
+  margin-bottom: var(--space-5);
+}
+.footer p, .footer li, .footer a { color: var(--color-text-on-dark-muted); font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.footer a { text-decoration: none; }
+.footer a:hover { color: var(--color-text-on-dark); text-decoration: underline; }
+.footer__list li + li { margin-top: var(--space-3); }
+.footer__legal {
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+  align-items: center;
+  justify-content: space-between;
+}
+.footer__legal p { font-size: var(--text-xs); color: var(--pfr-neutral-400); }
+
+/* =====================================================================
+   BANNER DE COOKIES — canto inferior ESQUERDO, largura limitada.
+   Regra fixa do vault (Regras/Modulos-LGPD): SEMPRE à esquerda, nunca à
+   direita. A regra nasceu porque o canto inferior direito costuma ser do botão
+   flutuante do Merlin; aqui não há Merlin, mas a regra é fixa e o canto direito
+   fica livre para um botão flutuante de WhatsApp, se um dia entrar.
+   A folga em relação ao CTA do hero é garantida por medição
+   (harness: interseção retângulo-a-retângulo em cada breakpoint).
+   ===================================================================== */
+.cookie {
+  position: fixed;
+  z-index: 80;
+  /* Alinhado ao MESMO eixo esquerdo das seções, não a uma margem própria.
+     Repete a conta do .container: max-width centralizado + padding do
+     breakpoint. Abaixo de 1280px o max() cai no padding, igual ao container.
+     O 50% de um elemento fixo resolve contra a viewport sem a barra de
+     rolagem, que é o mesmo eixo do container — por isso não uso 100vw. */
+  --cookie-pad: var(--container-padding-mobile);
+  left: max(var(--cookie-pad), calc(50% - var(--container-max) / 2 + var(--cookie-pad)));
+  bottom: var(--space-6);
+  right: auto;
+  /* Barra compacta: à esquerda o CTA do hero também vive embaixo, então o banner
+     precisa caber ABAIXO dele. Medido em 1440x900: CTA termina em y=804 e o
+     banner ocupa 812→876. A folga é verificada pelo harness em cada breakpoint. */
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  width: min(660px, calc(100% - 2 * var(--cookie-pad)));
+  padding: var(--space-3) var(--space-5);
+  background: var(--pfr-navy-900);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text-on-dark-muted);
+}
+.cookie[hidden] { display: none; }
+.cookie__title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-display-bold);
+  color: var(--color-text-on-dark);
+  margin-bottom: var(--space-2);
+}
+/* Na barra compacta o título vira redundância: o próprio texto já diz que o
+   site usa cookies. Ele volta no formato cartão, abaixo de 900px. */
+.cookie__title { display: none; }
+.cookie p { font-size: var(--text-xs); line-height: var(--leading-normal); flex: 1 1 auto; margin: 0; }
+.cookie a { color: var(--color-accent-text-on-dark); }
+.cookie__actions { display: flex; gap: var(--space-3); margin: 0; flex: 0 0 auto; }
+.cookie__actions .btn { justify-content: center; white-space: nowrap; }
+
+/* Folga reservada enquanto o banner está aberto.
+   O hero tem altura travada em 100vh, então ele não "rola para longe" do banner:
+   a única saída é subir o conteúdo. O padding no body deixa o CTA final também
+   poder ser rolado para cima da barra. Some assim que o visitante decide. */
+.cookie-open .hero__inner { padding-bottom: calc(var(--space-16) + 6.5rem); }
+.cookie-open body { padding-bottom: 7.5rem; }
+
+/* Telas baixas de notebook (1366x768 é das mais comuns): o hero de 100vh não
+   comportava o conteúdo — media 835px de altura numa janela de 768 e empurrava
+   o CTA 3px abaixo da dobra. Aqui o respiro encolhe para o CTA caber inteiro.
+   Achado por medição, não estava no harness (que testava largura, não altura). */
+@media (min-width: 900px) and (max-height: 850px) {
+  .hero__inner { padding-top: var(--space-16); padding-bottom: var(--space-10); }
+  .hero__sub { margin-top: var(--space-5); }
+  /* Em 768px de altura sobra pouco: a barra encosta mais no rodapé e encolhe,
+     e a reserva do hero cresce, senão o banner come o CTA. Medido: com estes
+     valores a folga em 1366x768 sai positiva em vez de -82px. */
+  /* Com 768px de altura o conteúdo do hero ia do topo (y=64) até y=751 e o CTA
+     caía abaixo da dobra — não havia para onde a reserva empurrar. A escala do
+     hero encolhe aqui SEMPRE, não só com o banner aberto: se dependesse do
+     banner, o hero saltaria de tamanho no clique de "Aceitar". */
+  .hero__inner { padding-top: var(--space-12); }
+  .hero__title { font-size: clamp(1.9rem, 1.1rem + 2.4vw, 3rem); }
+  .hero__sub { margin-top: var(--space-4); font-size: var(--text-base); }
+  /* Só encosta mais no rodapé; o eixo esquerdo continua o do container. */
+  .cookie { bottom: var(--space-3); padding: var(--space-2) var(--space-4); }
+  .cookie-open .hero__inner { padding-bottom: calc(var(--space-10) + 3rem); }
+}
+
+/* O padding do banner acompanha o do .container, senão o eixo esquerdo
+   desalinha exatamente nos pontos em que o container muda de respiro. */
+@media (min-width: 768px)  { .cookie { --cookie-pad: var(--container-padding-tablet); } }
+@media (min-width: 1200px) { .cookie { --cookie-pad: var(--container-padding-desktop); } }
+
+/* Abaixo de 900px o hero empilha e o CTA sobe: o banner volta ao formato
+   de cartão, com espaço para o título. Continua alinhado ao container. */
+@media (max-width: 899px) {
+  .cookie {
+    display: block;
+    bottom: var(--space-3);
+    padding: var(--space-5);
+  }
+  .cookie__title { display: block; }
+  .cookie p { font-size: var(--text-sm); }
+  .cookie__actions { margin-top: var(--space-5); flex-wrap: wrap; }
+  .cookie__actions .btn { flex: 1 1 auto; }
+}
+
+/* =====================================================================
+   LIGHTBOX
+   ===================================================================== */
+.lb {
+  position: fixed; inset: 0; z-index: 90;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--space-16) var(--space-4) var(--space-20);
+  background: rgba(8, 28, 43, 0.96);
+}
+.lb[hidden] { display: none; }
+.lb__fig { margin: 0; max-width: min(1100px, 100%); }
+.lb__img { max-width: 100%; max-height: 70vh; width: auto; height: auto; margin: 0 auto; border-radius: var(--radius-md); background: #fff; }
+.lb__cap { margin-top: var(--space-4); text-align: center; color: var(--color-text-on-dark); font-size: var(--text-sm); }
+.lb__count { display: block; margin-top: var(--space-2); color: var(--pfr-neutral-400); font-size: var(--text-xs); }
+.lb__btn {
+  position: absolute;
+  width: 52px; height: 52px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  background: rgba(8, 28, 43, 0.6);
+}
+.lb__btn:hover { background: rgba(255, 255, 255, 0.14); }
+.lb__prev  { left: var(--space-4);  top: 50%; transform: translateY(-50%); }
+.lb__next  { right: var(--space-4); top: 50%; transform: translateY(-50%); }
+.lb__close { right: var(--space-4); top: var(--space-4); }
+
+body.is-locked { overflow: hidden; }
+
+/* =====================================================================
+   PÁGINA INTERNA (política de privacidade)
+   ===================================================================== */
+.page-header { background: var(--pfr-navy-900); padding: var(--space-12) 0 var(--space-10); }
+.page-header .header__logo img { width: 52px; height: 50px; }
+.page-header__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-10); }
+.page-header__back { color: var(--color-text-on-dark); font-size: var(--text-sm); text-decoration: none; }
+.page-header__back:hover { text-decoration: underline; }
+.page-header h1 { color: var(--color-text-on-dark); font-size: clamp(1.75rem, 1.1rem + 2.6vw, var(--text-4xl)); }
+
+.prose { max-width: 46rem; padding: var(--space-16) 0 var(--space-20); }
+.prose h2 { font-size: var(--text-2xl); margin: var(--space-12) 0 var(--space-4); }
+.prose h2:first-of-type { margin-top: 0; }
+.prose p, .prose li { font-size: var(--text-base); line-height: var(--leading-relaxed); }
+.prose p + p { margin-top: var(--space-4); }
+.prose ul { list-style: disc; padding-left: var(--space-6); margin-top: var(--space-4); }
+.prose li + li { margin-top: var(--space-2); }
+.prose a { color: var(--color-accent-text-on-light); }

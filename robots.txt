@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /_audit.html
+Disallow: /js/_audit.js
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
