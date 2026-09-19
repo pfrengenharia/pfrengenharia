@@ -52,11 +52,20 @@ gtag('consent','default',{
   gtag('config', 'AW-18337569699');
 </script>
 
-<!-- Event snippet for Compra conversion page -->
+<!-- Função para rastrear conversão ao clicar nos botões do WhatsApp -->
 <script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-18337569699/qNmxCPzM6-wcEKO3hKhE',
-      'transaction_id': ''
+  function trackWhatsAppConversion() {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18337569699/qNmxCPzM6-wcEKO3hKhE'
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Seleciona todos os links do WhatsApp
+    var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    whatsappLinks.forEach(function(link) {
+      link.addEventListener('click', trackWhatsAppConversion);
+    });
   });
 </script>
 
