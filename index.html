@@ -10,7 +10,7 @@
 <link rel="icon" href="/imagens/logo.png" type="image/png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="PFR Engenharia">
+<meta property="og:title" content="Engenharia de Segurança, AVCB e Projetos Técnicos | PFR Engenharia">
 <meta property="og:description" content="Engenharia de Segurança do Trabalho, aprovação de AVCB/CLCB, projetos PPCI e instalações prediais em BIM. Fale diretamente com nossos engenheiros.">
 <meta property="og:image" content="/imagens/og-pfr.webp">
 
@@ -130,70 +130,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-W6MPN3ST');</script>
 <!-- End Google Tag Manager -->
-
-<!-- SCRIPT DE TROCA DINÂMICA FORÇADA -->
-<script>
-  (function() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var servico = urlParams.get('servico');
-
-    if (!servico) return;
-
-    var conteudos = {
-      'avcb': {
-        title: 'Regularização e Licenciamento de <span class="u" data-underline>AVCB / CLCB</span>',
-        claim: 'Aprovação Ágil no Corpo de Bombeiros',
-        sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
-        wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
-      },
-      'seguranca': {
-        title: 'Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e SST',
-        claim: 'Gestão Ocupacional Completa e eSocial',
-        sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
-        wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
-      },
-      'bim': {
-        title: 'Projetos de <span class="u" data-underline>Instalações Prediais</span> em BIM',
-        claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
-        sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
-        wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
-      },
-      'estrutural': {
-        title: 'Projetos <span class="u" data-underline>Estruturais</span> de Alta Precisão em BIM',
-        claim: 'Concreto Armado e Estruturas Metálicas',
-        sub: 'Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.',
-        wspMsg: 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
-      }
-    };
-
-    var key = servico.toLowerCase().trim();
-    var data = conteudos[key];
-    if (!data) return;
-
-    // Monitora a construção da página para trocar antes que o usuário veja
-    var observer = new MutationObserver(function(mutations, obs) {
-      var elTitle = document.getElementById('hero-title');
-      var elClaim = document.getElementById('hero-claim');
-      var elSub = document.getElementById('hero-sub');
-
-      if (elTitle && elClaim && elSub) {
-        elTitle.innerHTML = data.title;
-        elClaim.innerHTML = data.claim;
-        elSub.innerHTML = data.sub;
-
-        var encodedMsg = encodeURIComponent(data.wspMsg);
-        var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-        whatsappLinks.forEach(function(link) {
-          link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
-        });
-
-        obs.disconnect(); // Para de observar após aplicar
-      }
-    });
-
-    observer.observe(document, { childList: true, subtree: true });
-  })();
-</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -264,11 +200,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="container hero__inner">
       <div class="hero__col">
-        <h1 class="hero__title" id="hero-title" data-reveal>Adequação técnica e emissão de <span class="u" data-underline>AVCB</span> sob rigor normativo</h1>
-        <p class="hero__claim" id="hero-claim" data-reveal data-delay="1">Regularização técnica e conformidade legal para sua empresa</p>
-        <p class="hero__sub" id="hero-sub" data-reveal data-delay="2">Soluções completas em Prevenção contra Incêndio, licenças AVCB/CLCB, Engenharia de Segurança do Trabalho (NR-12, Nova NR-01, PGR, LTCAT, eSocial) e projetos em BIM. Atendimento imediato.</p>
+        <h1 class="hero__title" id="hero-title">Adequação técnica e emissão de <span class="u" data-underline>AVCB</span> sob rigor normativo</h1>
+        <p class="hero__claim" id="hero-claim">Regularização técnica e conformidade legal para sua empresa</p>
+        <p class="hero__sub" id="hero-sub">Soluções completas em Prevenção contra Incêndio, licenças AVCB/CLCB, Engenharia de Segurança do Trabalho (NR-12, Nova NR-01, PGR, LTCAT, eSocial) e projetos em BIM. Atendimento imediato.</p>
         
-        <div class="hero__actions" data-reveal data-delay="3">
+        <div class="hero__actions">
           <a id="cta-whatsapp2" class="btn btn--primary" href="https://wa.me/5514981290140?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20engenheiro." target="_blank" rel="noopener"
        aria-label="Falar com Engenheiro no WhatsApp">Falar com Engenheiro no WhatsApp
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
@@ -276,7 +212,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <!-- Prova Social Imediata -->
-        <div class="hero__trust-badges" data-reveal data-delay="4">
+        <div class="hero__trust-badges">
           <div class="trust-badge">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             +15 anos de atuação
@@ -874,5 +810,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="/js/app.js" defer></script>
 <script src="/js/animations.js" defer></script>
+
+<!-- SCRIPT FINAL E GARANTIDO PARA DYNAMIC TEXT -->
+<script>
+  (function() {
+    function aplicarTrocaDinamica() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var servico = urlParams.get('servico');
+      if (!servico) return;
+
+      var conteudos = {
+        'avcb': {
+          title: 'Regularização e Licenciamento de <span class="u" data-underline>AVCB / CLCB</span>',
+          claim: 'Aprovação Ágil no Corpo de Bombeiros',
+          sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
+          wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
+        },
+        'seguranca': {
+          title: 'Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e SST',
+          claim: 'Gestão Ocupacional Completa e eSocial',
+          sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
+          wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
+        },
+        'bim': {
+          title: 'Projetos de <span class="u" data-underline>Instalações Prediais</span> em BIM',
+          claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
+          sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
+          wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
+        },
+        'estrutural': {
+          title: 'Projetos <span class="u" data-underline>Estruturais</span> de Alta Precisão em BIM',
+          claim: 'Concreto Armado e Estruturas Metálicas',
+          sub: 'Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.',
+          wspMsg: 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
+        }
+      };
+
+      var data = conteudos[servico.toLowerCase().trim()];
+      if (!data) return;
+
+      var elTitle = document.getElementById('hero-title');
+      var elClaim = document.getElementById('hero-claim');
+      var elSub = document.getElementById('hero-sub');
+
+      if (elTitle) elTitle.innerHTML = data.title;
+      if (elClaim) elClaim.innerHTML = data.claim;
+      if (elSub) elSub.innerHTML = data.sub;
+
+      var encodedMsg = encodeURIComponent(data.wspMsg);
+      var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+      whatsappLinks.forEach(function(link) {
+        link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
+      });
+    }
+
+    // Executa imediatamente e repete após o carregamento das animações
+    aplicarTrocaDinamica();
+    window.addEventListener('DOMContentLoaded', aplicarTrocaDinamica);
+    window.addEventListener('load', function() {
+      setTimeout(aplicarTrocaDinamica, 100);
+      setTimeout(aplicarTrocaDinamica, 500);
+    });
+  })();
+</script>
 </body>
 </html>
