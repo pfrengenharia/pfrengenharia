@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PFR Engenharia</title>
+<title>Engenharia de Segurança, AVCB e Projetos Técnicos | PFR Engenharia</title>
 <meta name="description" content="Especialistas em Engenharia de Segurança do Trabalho, aprovação de AVCB/CLCB, PPCI e Projetos Técnicos de Instalações Prediais em BIM. Atendimento imediato via WhatsApp.">
 <meta name="theme-color" content="#0E2A3F">
 <link rel="canonical" href="/">
 <link rel="icon" href="/imagens/logo.png" type="image/png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="PFR Engenharia">
+<meta property="og:title" content="Engenharia de Segurança, AVCB e Projetos Técnicos | PFR Engenharia">
 <meta property="og:description" content="Engenharia de Segurança do Trabalho, aprovação de AVCB/CLCB, projetos PPCI e instalações prediais em BIM. Fale diretamente com nossos engenheiros.">
 <meta property="og:image" content="/imagens/og-pfr.webp">
 
@@ -74,7 +74,23 @@
     color: #25d366;
     flex-shrink: 0;
   }
+
+  /* Ocultar variações inativas */
+  .dynamic-var { display: none; }
+  .dynamic-var.active { display: block; }
+  h1.dynamic-var.active { display: block !important; }
 </style>
+
+<!-- SCRIPT DE EXECUÇÃO IMEDIATA (ANTES DE RENDERIZAR O HTML) -->
+<script>
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var servico = params.get('servico') || window.location.hash.replace('#', '');
+    if (servico) {
+      document.documentElement.setAttribute('data-servico', servico.toLowerCase().trim());
+    }
+  })();
+</script>
 
 <!-- Consent Mode -->
 <script>
@@ -201,10 +217,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="container hero__inner">
       <div class="hero__col">
-        <h1 class="hero__title" id="hero-title">Adequação técnica e emissão de <span class="u">AVCB</span> sob rigor normativo</h1>
-        <p class="hero__claim" id="hero-claim">Regularização técnica e conformidade legal para sua empresa</p>
-        <p class="hero__sub" id="hero-sub">Soluções completas em Prevenção contra Incêndio, licenças AVCB/CLCB, Engenharia de Segurança do Trabalho (NR-12, Nova NR-01, PGR, LTCAT, eSocial) e projetos em BIM. Atendimento imediato.</p>
-        
+
+        <!-- VARIÂNCIA PADRÃO -->
+        <div class="dynamic-var default-var active">
+          <h1 class="hero__title">Adequação técnica e emissão de <span class="u">AVCB</span> sob rigor normativo</h1>
+          <p class="hero__claim">Regularização técnica e conformidade legal para sua empresa</p>
+          <p class="hero__sub">Soluções completas em Prevenção contra Incêndio, licenças AVCB/CLCB, Engenharia de Segurança do Trabalho (NR-12, Nova NR-01, PGR, LTCAT, eSocial) e projetos em BIM. Atendimento imediato.</p>
+        </div>
+
+        <!-- VARIÂNCIA AVCB -->
+        <div class="dynamic-var avcb-var">
+          <h1 class="hero__title">Regularização e Licenciamento de <span class="u">AVCB / CLCB</span></h1>
+          <p class="hero__claim">Aprovação Ágil no Corpo de Bombeiros</p>
+          <p class="hero__sub">Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.</p>
+        </div>
+
+        <!-- VARIÂNCIA SEGURANÇA DO TRABALHO -->
+        <div class="dynamic-var seguranca-var">
+          <h1 class="hero__title">Engenharia de <span class="u">Segurança do Trabalho</span> e SST</h1>
+          <p class="hero__claim">Gestão Ocupacional Completa e eSocial</p>
+          <p class="hero__sub">Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.</p>
+        </div>
+
+        <!-- VARIÂNCIA BIM -->
+        <div class="dynamic-var bim-var">
+          <h1 class="hero__title">Projetos de <span class="u">Instalações Prediais</span> em BIM</h1>
+          <p class="hero__claim">Projetos Hidráulicos, Elétricos e Gás Compatibilizados</p>
+          <p class="hero__sub">Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.</p>
+        </div>
+
+        <!-- VARIÂNCIA ESTRUTURAL -->
+        <div class="dynamic-var estrutural-var">
+          <h1 class="hero__title">Projetos <span class="u">Estruturais</span> de Alta Precisão em BIM</h1>
+          <p class="hero__claim">Concreto Armado e Estruturas Metálicas</p>
+          <p class="hero__sub">Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.</p>
+        </div>
+
         <div class="hero__actions">
           <a id="cta-whatsapp2" class="btn btn--primary" href="https://wa.me/5514981290140?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20engenheiro." target="_blank" rel="noopener"
        aria-label="Falar com Engenheiro no WhatsApp">Falar com Engenheiro no WhatsApp
@@ -812,66 +860,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/app.js" defer></script>
 <script src="/js/animations.js" defer></script>
 
-<!-- SCRIPT UNIVERSAL DE DETECÇÃO (QUERY STRING + HASH) -->
+<!-- SCRIPT DE ATIVAÇÃO DE VISIBILIDADE E LINKS DO WHATSAPP -->
 <script>
   (function() {
-    var conteudos = {
-      'avcb': {
-        title: 'Regularização e Licenciamento de <span class="u">AVCB / CLCB</span>',
-        claim: 'Aprovação Ágil no Corpo de Bombeiros',
-        sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
-        wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
-      },
-      'seguranca': {
-        title: 'Engenharia de <span class="u">Segurança do Trabalho</span> e SST',
-        claim: 'Gestão Ocupacional Completa e eSocial',
-        sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
-        wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
-      },
-      'bim': {
-        title: 'Projetos de <span class="u">Instalações Prediais</span> em BIM',
-        claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
-        sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
-        wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
-      },
-      'estrutural': {
-        title: 'Projetos <span class="u">Estruturais</span> de Alta Precisão em BIM',
-        claim: 'Concreto Armado e Estruturas Metálicas',
-        sub: 'Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.',
-        wspMsg: 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
-      }
-    };
-
-    function executarTroca() {
-      // Procura primeiro pelo parâmetro URL (?servico=...) e depois pelo Hash (#...)
+    function ativarVariacao() {
       var params = new URLSearchParams(window.location.search);
-      var servico = params.get('servico') || window.location.hash.replace('#', '');
+      var servico = (params.get('servico') || window.location.hash.replace('#', '')).toLowerCase().trim();
 
-      if (!servico) return;
+      var msgs = {
+        'avcb': 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.',
+        'seguranca': 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.',
+        'bim': 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.',
+        'estrutural': 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
+      };
 
-      var key = servico.toLowerCase().trim();
-      var data = conteudos[key];
-      if (!data) return;
+      if (servico && msgs[servico]) {
+        // Esconde padrão e mostra variação selecionada
+        var els = document.querySelectorAll('.dynamic-var');
+        els.forEach(function(el) { el.classList.remove('active'); });
 
-      var elTitle = document.getElementById('hero-title');
-      var elClaim = document.getElementById('hero-claim');
-      var elSub = document.getElementById('hero-sub');
+        var target = document.querySelector('.' + servico + '-var');
+        if (target) {
+          target.classList.add('active');
+        }
 
-      if (elTitle) elTitle.innerHTML = data.title;
-      if (elClaim) elClaim.innerHTML = data.claim;
-      if (elSub) elSub.innerHTML = data.sub;
-
-      var encodedMsg = encodeURIComponent(data.wspMsg);
-      var links = document.querySelectorAll('a[href*="wa.me"]');
-      links.forEach(function(link) {
-        link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
-      });
+        // Atualiza links do WhatsApp
+        var encodedMsg = encodeURIComponent(msgs[servico]);
+        var links = document.querySelectorAll('a[href*="wa.me"]');
+        links.forEach(function(link) {
+          link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
+        });
+      }
     }
 
-    executarTroca();
-    window.addEventListener('DOMContentLoaded', executarTroca);
-    window.addEventListener('load', executarTroca);
-    window.addEventListener('hashchange', executarTroca);
+    ativarVariacao();
+    document.addEventListener('DOMContentLoaded', ativarVariacao);
   })();
 </script>
 </body>
