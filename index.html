@@ -116,7 +116,6 @@ gtag('consent','default',{
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Seleciona todos os links do WhatsApp
     var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
     whatsappLinks.forEach(function(link) {
       link.addEventListener('click', trackWhatsAppConversion);
@@ -201,7 +200,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="container hero__inner">
       <div class="hero__col">
-        <!-- IDs adicionados para troca dinâmica via JS -->
         <h1 class="hero__title" id="hero-title" data-reveal>Adequação técnica e emissão de <span class="u" data-underline>AVCB</span> sob rigor normativo</h1>
         <p class="hero__claim" id="hero-claim" data-reveal data-delay="1">Regularização técnica e conformidade legal para sua empresa</p>
         <p class="hero__sub" id="hero-sub" data-reveal data-delay="2">Soluções completas em Prevenção contra Incêndio, licenças AVCB/CLCB, Engenharia de Segurança do Trabalho (NR-12, Nova NR-01, PGR, LTCAT, eSocial) e projetos em BIM. Atendimento imediato.</p>
@@ -413,6 +411,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </span>
             <h3 class="svc__title">Instalações Elétricas</h3>
             <p>Projetos de distribuição elétrica predial e industrial, quadros de carga, circuitos, iluminação e proteção contra surtos.</p>
+          </li>
+          <li class="svc__item">
+            <span class="svc__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 9h2M13 9h2M9 13h2M13 13h2"/>
+              </svg>
+            </span>
+            <h3 class="svc__title">Projetos Estruturais em BIM</h3>
+            <p>Dimensionamento e detalhamento de estruturas em concreto armado e metálicas, focados em economia de materiais, desempenho e segurança.</p>
           </li>
         </ul>
 
@@ -804,55 +811,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/app.js" defer></script>
 <script src="/js/animations.js" defer></script>
 
-<!-- Script para Personalização Dinâmica por Parâmetro URL (Google Ads) -->
+<!-- Script Dinâmico Corrigido -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const servico = urlParams.get('servico');
+  (function() {
+    function aplicarTrocaTexto() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var servico = urlParams.get('servico');
 
-    // Mapeamento dos textos de acordo com cada serviço oferecido
-    const conteudos = {
-      'avcb': {
-        title: 'Regularização e Licenciamento de <span class="u" data-underline>AVCB / CLCB</span>',
-        claim: 'Aprovação Ágil no Corpo de Bombeiros',
-        sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
-        wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
-      },
-      'seguranca': {
-        title: 'Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e SST',
-        claim: 'Gestão Ocupacional Completa e eSocial',
-        sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
-        wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
-      },
-      'bim': {
-        title: 'Projetos de <span class="u" data-underline>Instalações Prediais</span> em BIM',
-        claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
-        sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
-        wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
-      }
-    };
+      if (!servico) return;
 
-    if (servico && conteudos[servico]) {
-      const data = conteudos[servico];
+      var conteudos = {
+        'avcb': {
+          title: 'Regularização e Licenciamento de <span class="u" data-underline>AVCB / CLCB</span>',
+          claim: 'Aprovação Ágil no Corpo de Bombeiros',
+          sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
+          wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
+        },
+        'seguranca': {
+          title: 'Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e SST',
+          claim: 'Gestão Ocupacional Completa e eSocial',
+          sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
+          wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
+        },
+        'bim': {
+          title: 'Projetos de <span class="u" data-underline>Instalações Prediais</span> em BIM',
+          claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
+          sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
+          wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
+        },
+        'estrutural': {
+          title: 'Projetos <span class="u" data-underline>Estruturais</span> de Alta Precisão em BIM',
+          claim: 'Concreto Armado e Estruturas Metálicas',
+          sub: 'Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.',
+          wspMsg: 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
+        }
+      };
 
-      // Atualiza os textos da Hero Section
-      const elTitle = document.getElementById('hero-title');
-      const elClaim = document.getElementById('hero-claim');
-      const elSub = document.getElementById('hero-sub');
+      var data = conteudos[servico.toLowerCase().trim()];
+      if (!data) return;
+
+      var elTitle = document.getElementById('hero-title');
+      var elClaim = document.getElementById('hero-claim');
+      var elSub = document.getElementById('hero-sub');
 
       if (elTitle) elTitle.innerHTML = data.title;
-      if (elClaim) elClaim.textContent = data.claim;
-      if (elSub) elSub.textContent = data.sub;
+      if (elClaim) elClaim.innerHTML = data.claim;
+      if (elSub) elSub.innerHTML = data.sub;
 
-      // Atualiza os links de WhatsApp para enviar a mensagem personalizada do serviço
-      const encodedMsg = encodeURIComponent(data.wspMsg);
-      const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-      
+      var encodedMsg = encodeURIComponent(data.wspMsg);
+      var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
       whatsappLinks.forEach(function(link) {
-        link.href = `https://wa.me/5514981290140?text=${encodedMsg}`;
+        link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
       });
     }
-  });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aplicarTrocaTexto);
+    } else {
+      aplicarTrocaTexto();
+    }
+  })();
 </script>
 </body>
 </html>
