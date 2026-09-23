@@ -10,7 +10,7 @@
 <link rel="icon" href="/imagens/logo.png" type="image/png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Engenharia de Segurança, AVCB e Projetos Técnicos | PFR Engenharia">
+<meta property="og:title" content="PFR Engenharia">
 <meta property="og:description" content="Engenharia de Segurança do Trabalho, aprovação de AVCB/CLCB, projetos PPCI e instalações prediais em BIM. Fale diretamente com nossos engenheiros.">
 <meta property="og:image" content="/imagens/og-pfr.webp">
 
@@ -130,6 +130,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-W6MPN3ST');</script>
 <!-- End Google Tag Manager -->
+
+<!-- SCRIPT DE TROCA DINÂMICA FORÇADA -->
+<script>
+  (function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var servico = urlParams.get('servico');
+
+    if (!servico) return;
+
+    var conteudos = {
+      'avcb': {
+        title: 'Regularização e Licenciamento de <span class="u" data-underline>AVCB / CLCB</span>',
+        claim: 'Aprovação Ágil no Corpo de Bombeiros',
+        sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
+        wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
+      },
+      'seguranca': {
+        title: 'Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e SST',
+        claim: 'Gestão Ocupacional Completa e eSocial',
+        sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
+        wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
+      },
+      'bim': {
+        title: 'Projetos de <span class="u" data-underline>Instalações Prediais</span> em BIM',
+        claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
+        sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
+        wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
+      },
+      'estrutural': {
+        title: 'Projetos <span class="u" data-underline>Estruturais</span> de Alta Precisão em BIM',
+        claim: 'Concreto Armado e Estruturas Metálicas',
+        sub: 'Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.',
+        wspMsg: 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
+      }
+    };
+
+    var key = servico.toLowerCase().trim();
+    var data = conteudos[key];
+    if (!data) return;
+
+    // Monitora a construção da página para trocar antes que o usuário veja
+    var observer = new MutationObserver(function(mutations, obs) {
+      var elTitle = document.getElementById('hero-title');
+      var elClaim = document.getElementById('hero-claim');
+      var elSub = document.getElementById('hero-sub');
+
+      if (elTitle && elClaim && elSub) {
+        elTitle.innerHTML = data.title;
+        elClaim.innerHTML = data.claim;
+        elSub.innerHTML = data.sub;
+
+        var encodedMsg = encodeURIComponent(data.wspMsg);
+        var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+        whatsappLinks.forEach(function(link) {
+          link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
+        });
+
+        obs.disconnect(); // Para de observar após aplicar
+      }
+    });
+
+    observer.observe(document, { childList: true, subtree: true });
+  })();
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -810,67 +874,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="/js/app.js" defer></script>
 <script src="/js/animations.js" defer></script>
-
-<!-- Script Dinâmico Corrigido -->
-<script>
-  (function() {
-    function aplicarTrocaTexto() {
-      var urlParams = new URLSearchParams(window.location.search);
-      var servico = urlParams.get('servico');
-
-      if (!servico) return;
-
-      var conteudos = {
-        'avcb': {
-          title: 'Regularização e Licenciamento de <span class="u" data-underline>AVCB / CLCB</span>',
-          claim: 'Aprovação Ágil no Corpo de Bombeiros',
-          sub: 'Elaboração de projetos PPCI, laudos técnicos, vistorias prediais e emissão/renovação de AVCB sob estrito cumprimento normativo.',
-          wspMsg: 'Olá! Vim pelo anúncio de AVCB/PPCI e gostaria de falar com um engenheiro.'
-        },
-        'seguranca': {
-          title: 'Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e SST',
-          claim: 'Gestão Ocupacional Completa e eSocial',
-          sub: 'Elaboração de PGR, LTCAT, Laudos NR-12, gestão de riscos psicossociais (Nova NR-01) e envio de eventos para o eSocial sem complicações.',
-          wspMsg: 'Olá! Vim pelo anúncio de Segurança do Trabalho e gostaria de falar com um engenheiro.'
-        },
-        'bim': {
-          title: 'Projetos de <span class="u" data-underline>Instalações Prediais</span> em BIM',
-          claim: 'Projetos Hidráulicos, Elétricos e Gás Compatibilizados',
-          sub: 'Modelagem tridimensional integrada para edificações comerciais e industriais. Garanta precisão executiva e elimine retrabalhos.',
-          wspMsg: 'Olá! Vim pelo anúncio de Projetos em BIM e gostaria de falar com um engenheiro.'
-        },
-        'estrutural': {
-          title: 'Projetos <span class="u" data-underline>Estruturais</span> de Alta Precisão em BIM',
-          claim: 'Concreto Armado e Estruturas Metálicas',
-          sub: 'Dimensionamento estrutural otimizado para máxima economia, racionalização de fôrmas/aço e compatibilização em plataforma BIM.',
-          wspMsg: 'Olá! Vim pelo anúncio de Projetos Estruturais e gostaria de falar com um engenheiro.'
-        }
-      };
-
-      var data = conteudos[servico.toLowerCase().trim()];
-      if (!data) return;
-
-      var elTitle = document.getElementById('hero-title');
-      var elClaim = document.getElementById('hero-claim');
-      var elSub = document.getElementById('hero-sub');
-
-      if (elTitle) elTitle.innerHTML = data.title;
-      if (elClaim) elClaim.innerHTML = data.claim;
-      if (elSub) elSub.innerHTML = data.sub;
-
-      var encodedMsg = encodeURIComponent(data.wspMsg);
-      var whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-      whatsappLinks.forEach(function(link) {
-        link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', aplicarTrocaTexto);
-    } else {
-      aplicarTrocaTexto();
-    }
-  })();
-</script>
 </body>
 </html>
