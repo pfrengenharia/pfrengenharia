@@ -812,7 +812,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/app.js" defer></script>
 <script src="/js/animations.js" defer></script>
 
-<!-- SCRIPT ABSOLUTO DE FORÇAMENTO DE CONTEÚDO -->
+<!-- SCRIPT UNIVERSAL DE DETECÇÃO (QUERY STRING + HASH) -->
 <script>
   (function() {
     var conteudos = {
@@ -842,34 +842,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     };
 
-    var params = new URLSearchParams(window.location.search);
-    var servico = params.get('servico');
-    if (!servico) return;
+    function executarTroca() {
+      // Procura primeiro pelo parâmetro URL (?servico=...) e depois pelo Hash (#...)
+      var params = new URLSearchParams(window.location.search);
+      var servico = params.get('servico') || window.location.hash.replace('#', '');
 
-    var key = servico.toLowerCase().trim();
-    var data = conteudos[key];
-    if (!data) return;
+      if (!servico) return;
 
-    function reescrever() {
-      var t = document.getElementById('hero-title');
-      var c = document.getElementById('hero-claim');
-      var s = document.getElementById('hero-sub');
+      var key = servico.toLowerCase().trim();
+      var data = conteudos[key];
+      if (!data) return;
 
-      if (t) t.innerHTML = data.title;
-      if (c) c.innerHTML = data.claim;
-      if (s) s.innerHTML = data.sub;
+      var elTitle = document.getElementById('hero-title');
+      var elClaim = document.getElementById('hero-claim');
+      var elSub = document.getElementById('hero-sub');
+
+      if (elTitle) elTitle.innerHTML = data.title;
+      if (elClaim) elClaim.innerHTML = data.claim;
+      if (elSub) elSub.innerHTML = data.sub;
 
       var encodedMsg = encodeURIComponent(data.wspMsg);
       var links = document.querySelectorAll('a[href*="wa.me"]');
-      links.forEach(function(l) {
-        l.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
+      links.forEach(function(link) {
+        link.href = 'https://wa.me/5514981290140?text=' + encodedMsg;
       });
     }
 
-    // Executa em tempo real em múltiplos ticks para superar a animação externa
-    reescrever();
-    var loop = setInterval(reescrever, 100);
-    setTimeout(function() { clearInterval(loop); }, 3000);
+    executarTroca();
+    window.addEventListener('DOMContentLoaded', executarTroca);
+    window.addEventListener('load', executarTroca);
+    window.addEventListener('hashchange', executarTroca);
   })();
 </script>
 </body>
