@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Engenharia de Segurança, AVCB e Projetos Técnicos | PFR Engenharia</title>
-<meta name="description" content="Especialistas em Engenharia de Segurança do Trabalho, aprovação de AVCB/CLCB, PPCI e Projetos Técnicos de Instalações Prediais em BIM. Atendimento imediato via WhatsApp.">
-<meta name="theme-color" content="#0E2A3F">
+<title>Engenharia de Segurança do Trabalho, AVCB e PPCI | PFR Engenharia</title>
+<meta name="description" content="Especialistas em Engenharia de Segurança do Trabalho (PGR, LTCAT, NR-12, eSocial) e aprovação de AVCB/CLCB e PPCI junto ao Corpo de Bombeiros. Fale com nossos engenheiros.">
+<meta name="theme-color" content="#0B1B3D">
 <link rel="canonical" href="https://www.pfrengenharia.com/">
 <link rel="icon" href="/imagens/logo.png" type="image/png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Engenharia de Segurança, AVCB e Projetos Técnicos | PFR Engenharia">
-<meta property="og:description" content="Engenharia de Segurança do Trabalho, aprovação de AVCB/CLCB, projetos PPCI e instalações prediais em BIM. Fale diretamente com nossos engenheiros.">
+<meta property="og:title" content="Engenharia de Segurança do Trabalho, AVCB e PPCI | PFR Engenharia">
+<meta property="og:description" content="Assessoria em Segurança Ocupacional, PGR, LTCAT, laudos NRs e regularização de AVCB/CLCB e PPCI no Corpo de Bombeiros. Atendimento imediato via WhatsApp.">
 <meta property="og:image" content="/imagens/og-pfr.webp">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,23 +22,129 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <style>
-  /* Calibração perfeita do espaçamento entre o cabeçalho e o título */
-  .hero {
-    padding-top: 110px !important;
-  }
-  .hero__inner {
-    padding-top: 10px !important;
-  }
-  @media (max-width: 768px) {
-    .hero {
-      padding-top: 90px !important;
-    }
-    .hero__inner {
-      padding-top: 0px !important;
-    }
+  /* Paleta de Cores Extraída das Imagens da PFR Engenharia */
+  :root {
+    --color-navy: #0B1B3D;
+    --color-navy-light: #162B56;
+    --color-orange: #E67E22;
+    --color-yellow: #F39C12;
+    --color-red: #C0392B;
+    --color-bg-light: #F8F9FA;
+    --color-text-dark: #1E293B;
   }
 
-  /* Estilo do Botão Flutuante do WhatsApp */
+  /* Cabeçalho Limpo e Fixo */
+  .header {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    border-bottom: 3px solid var(--color-orange);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 10px 0;
+  }
+
+  .header__logo img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .nav__link {
+    color: var(--color-navy) !important;
+    font-weight: 600;
+  }
+
+  .nav__link:hover {
+    color: var(--color-orange) !important;
+  }
+
+  /* Estilo da Secção Hero com Fundo de Engenharia */
+  .hero {
+    position: relative;
+    padding-top: 110px !important;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__veil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.2) 100%);
+    z-index: 2;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 3;
+    padding-top: 20px !important;
+    padding-bottom: 40px;
+  }
+
+  .hero__title {
+    color: var(--color-navy) !important;
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem) !important;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero__title span.u {
+    color: var(--color-orange);
+    border-bottom: 3px solid var(--color-red);
+  }
+
+  .hero__claim {
+    color: var(--color-red) !important;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .hero__sub {
+    color: var(--color-text-dark) !important;
+    font-size: 1rem;
+    max-width: 580px;
+    line-height: 1.55;
+  }
+
+  .btn--primary {
+    background-color: var(--color-orange) !important;
+    color: #FFF !important;
+    border: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-red) !important;
+    transform: translateY(-2px);
+  }
+
+  /* Botão Flutuante do WhatsApp */
   .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -58,37 +164,88 @@
     text-decoration: none;
     transition: transform 0.3s ease, background-color 0.3s ease;
   }
+
   .whatsapp-float:hover {
     transform: scale(1.1);
     background-color: #128c7e;
     color: #FFF;
   }
+
   .whatsapp-float svg {
     width: 35px;
     height: 35px;
     fill: currentColor;
   }
-  
-  /* Banner de Prova Social na Primeira Dobra */
+
+  /* Prova Social na Hero */
   .hero__trust-badges {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 1.5rem;
-    padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 1.8rem;
+    padding-top: 15px;
+    border-top: 1px solid rgba(11, 27, 61, 0.15);
   }
+
   .trust-badge {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.875rem;
-    color: #E2E8F0;
-    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--color-navy);
+    font-weight: 600;
   }
+
   .trust-badge svg {
-    color: #25d366;
+    color: var(--color-orange);
     flex-shrink: 0;
+  }
+
+  /* Secção de Números com Imagem de Fundo Personalizada */
+  .section--navy {
+    position: relative;
+    background: url('/imagens/textura-numeros.jpg') no-repeat center center / cover;
+    color: #FFF;
+  }
+
+  .section--navy::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 27, 61, 0.82);
+    z-index: 1;
+  }
+
+  .section--navy .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* CTA Final com Imagem de Fundo (Planta Técnica / Azul) */
+  .section--cta-final {
+    position: relative;
+    background: url('/imagens/fundo-cta-final.jpg') no-repeat center center / cover;
+    color: #FFF;
+    padding: 80px 0;
+  }
+
+  .section--cta-final::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 27, 61, 0.75);
+    z-index: 1;
+  }
+
+  .section--cta-final .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    .hero__veil {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 100%);
+    }
   }
 </style>
 
@@ -123,7 +280,7 @@ gtag('consent','default',{
   gtag('config', 'AW-18337569699');
 </script>
 
-<!-- Função para rastrear conversão ao clicar nos botões do WhatsApp -->
+<!-- Rastreio de conversão do WhatsApp -->
 <script>
   function trackWhatsAppConversion() {
     gtag('event', 'conversion', {
@@ -166,13 +323,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="header__logo" href="/" aria-label="PFR Engenharia e Consultoria, página inicial">
-      <img src="/imagens/logo-branca.png" alt="PFR Engenharia e Consultoria" width="677" height="653">
+      <img src="/imagens/logo.png" alt="PFR Engenharia e Consultoria">
     </a>
 
     <nav class="nav" aria-label="Navegação principal">
-      <a class="nav__link" href="#ppci-avcb">PPCI & AVCB</a>
       <a class="nav__link" href="#seguranca-trabalho">Segurança do Trabalho</a>
-      <a class="nav__link" href="#instalacoes-prediais">Instalações Prediais</a>
+      <a class="nav__link" href="#ppci-avcb">PPCI & AVCB</a>
       <a class="nav__link" href="#diferenciais">Diferenciais</a>
       <a class="nav__link" href="#portfolio">Portfólio</a>
       <a class="nav__link" href="#faq">Perguntas</a>
@@ -192,9 +348,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true">
   <button type="button" class="drawer__close" id="drawerClose" aria-label="Fechar menu">&times;</button>
   <ul class="drawer__list">
-    <li><a class="drawer__link" href="#ppci-avcb">PPCI & AVCB</a></li>
     <li><a class="drawer__link" href="#seguranca-trabalho">Segurança do Trabalho</a></li>
-    <li><a class="drawer__link" href="#instalacoes-prediais">Instalações Prediais</a></li>
+    <li><a class="drawer__link" href="#ppci-avcb">PPCI & AVCB</a></li>
     <li><a class="drawer__link" href="#diferenciais">Diferenciais</a></li>
     <li><a class="drawer__link" href="#portfolio">Portfólio</a></li>
     <li><a class="drawer__link" href="#faq">Perguntas</a></li>
@@ -207,23 +362,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ============================ 1. HERO INSTITUCIONAL ============================ -->
   <section class="hero" id="hero">
-    <div class="hero__grid" aria-hidden="true"></div>
-
-    <div class="hero__media" data-parallax="0.05">
-      <img class="hero-media" src="/imagens/hero-engenharia.jpg" alt="Projetos em BIM, Engenharia de Segurança do Trabalho e Licenciamentos Técnicos" width="2400" height="1430" fetchpriority="high" decoding="async">
+    <div class="hero__media">
+      <img src="/imagens/hero-engenharia.jpg" alt="PFR Engenharia - Segurança do Trabalho e Licenciamento contra Incêndio" width="2400" height="1430" fetchpriority="high" decoding="async">
     </div>
 
     <div class="hero__veil" aria-hidden="true"></div>
 
     <div class="container hero__inner">
-      <div class="hero__col">
-        <h1 class="hero__title" id="hero-title" style="font-size: clamp(1.6rem, 3.2vw, 2.5rem); margin-top: 0; line-height: 1.25;">Soluções integradas em <span class="u" data-underline>Engenharia, Segurança</span> e Projetos Técnicos</h1>
-        <p class="hero__claim" id="hero-claim">Consultoria especializada e conformidade técnica para sua empresa</p>
-        <p class="hero__sub" id="hero-sub">Atuamos com excelência em Engenharia de Segurança do Trabalho (PGR, LTCAT, NR-12, eSocial), Prevenção contra Incêndio (AVCB/CLCB e PPCI) e Projetos Complementares em BIM. Rigor normativo, eficiência e prazos garantidos.</p>
+      <div class="hero__col" style="max-width: 620px;">
+        <h1 class="hero__title" id="hero-title">Engenharia de <span class="u" data-underline>Segurança do Trabalho</span> e Regularização AVCB / PPCI</h1>
+        <p class="hero__claim" id="hero-claim">PFR ENGENHARIA: PROTEGENDO SUA EMPRESA COM RIGOR TÉCNICO</p>
+        <p class="hero__sub" id="hero-sub">Consultoria especializada em Segurança Ocupacional (PGR, LTCAT, NR-12, eSocial) e Prevenção contra Incêndio (projetos PPCI, renovação e emissão de AVCB/CLCB junto ao Corpo de Bombeiros). Conformidade total e proteção jurídica.</p>
         
-        <div class="hero__actions">
+        <div class="hero__actions" style="margin-top: 1.5rem;">
           <a id="cta-whatsapp2" class="btn btn--primary" href="https://wa.me/5514981290140?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20engenheiro." target="_blank" rel="noopener"
-       aria-label="Falar com Engenheiro no WhatsApp">Falar com Engenheiro no WhatsApp
+             aria-label="Falar com Engenheiro no WhatsApp">Falar com Engenheiro no WhatsApp
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -235,7 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="trust-badge">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            +50.000 m² entregues
+            +50.000 m² aprovados
           </div>
           <div class="trust-badge">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -247,74 +400,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============================ 2. PPCI & AVCB ============================ -->
-  <section class="section section--subtle scope" id="ppci-avcb">
-    <div class="container">
-      <div class="scope__layout">
-
-        <div data-reveal>
-          <p class="eyebrow">Prevenção contra Incêndio</p>
-          <h2 class="scope__title">Projetos PPCI e Licenciamento AVCB / CLCB</h2>
-        </div>
-
-        <div class="scope__body" data-reveal data-delay="1">
-          <p>Elaboramos projetos técnicos rigorosamente adequados às Instruções Técnicas do Corpo de Bombeiros e gerenciamos o processo de regularização até a emissão do certificado final da sua edificação.</p>
-        </div>
-
-        <ul class="svc" data-reveal data-delay="2">
-          <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2.7l7.2 3v5.4c0 4.3-3 8.3-7.2 9.6-4.2-1.3-7.2-5.3-7.2-9.6V5.7l7.2-3z"/>
-                <path d="M12 8.6c1.4 1.5 2.1 2.7 2.1 3.7a2.1 2.1 0 1 1-4.2 0c0-1 .7-2.2 2.1-3.7z"/>
-              </svg>
-            </span>
-            <h3 class="svc__title">Elaboração de Projeto PPCI</h3>
-            <p>Projetos técnicos (PT) e simplificados (PTS), dimensionamento de redes de hidrantes, alarmes, iluminação, extintores e rotas de fuga.</p>
-          </li>
-          <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6.8 3.2h7l4.4 4.4v13.2H6.8z"/><path d="M13.8 3.2v4.4h4.4"/>
-                <path d="M9.4 14.8l1.9 1.9 3.5-3.9"/>
-              </svg>
-            </span>
-            <h3 class="svc__title">Aprovação no Corpo de Bombeiros</h3>
-            <p>Protocolo, gerenciamento documental e atendimento ágil a exigências técnicas junto ao Corpo de Bombeiros da PMESP.</p>
-          </li>
-          <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6.6 2.9h10.8v14.6H6.6z"/><path d="M9.2 6.6h5.6M9.2 9.6h5.6M9.2 12.6h3.4"/>
-                <path d="M12 17.5l2.6 1.8v2.4L12 20.1l-2.6 1.6v-2.4z"/>
-              </svg>
-            </span>
-            <h3 class="svc__title">Emissão e Renovação de AVCB / CLCB</h3>
-            <p>Vistorias prévias no local, testes de equipamentos e acompanhamento presencial na vistoria oficial dos Bombeiros.</p>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 3. SEGURANÇA DO TRABALHO ===================== -->
+  <!-- ================= 2. SEGURANÇA DO TRABALHO ===================== -->
   <section class="section scope" id="seguranca-trabalho">
     <div class="container">
       <div class="scope__layout">
 
         <div data-reveal>
-          <p class="eyebrow">Segurança Ocupacional</p>
-          <h2 class="scope__title">Engenharia de Segurança do Trabalho</h2>
+          <p class="eyebrow" style="color: var(--color-orange);">Segurança Ocupacional</p>
+          <h2 class="scope__title" style="color: var(--color-navy);">Engenharia de Segurança do Trabalho</h2>
         </div>
 
         <div class="scope__body" data-reveal data-delay="1">
-          <p>Assessoria completa para adequação normativa, laudos ocupacionais e transmissão dos eventos de SST para o eSocial.</p>
+          <p>Assessoria completa para adequação às Normas Regulamentadoras, elaboração de laudos ocupacionais e transmissão dos eventos de SST para o eSocial com segurança e pontualidade.</p>
         </div>
 
         <ul class="svc" data-reveal data-delay="2">
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 4.2h6v2.4H9z"/><path d="M15 5.4h2.4v15.4H6.6V5.4H9"/>
                 <path d="M12 10.4l2.9 5.2H9.1l2.9-5.2z"/><path d="M12 12.6v1.2"/>
@@ -324,7 +426,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Mapeamento e gerenciamento de riscos ocupacionais, elaboração do inventário de riscos e plano de ação contínuo conforme a NR-1.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/>
               </svg>
@@ -333,7 +435,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Mapeamento, avaliação e gestão de fatores de risco psicossociais no ambiente de trabalho, integrando as novas exigências da NR-01 ao GRO/PGR da empresa.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/>
               </svg>
@@ -342,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Apreciação de riscos em máquinas e equipamentos, emissão de laudos de conformidade e ART para garantir a segurança operacional.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6.8 3.2h7l4.4 4.4v13.2H6.8z"/><path d="M13.8 3.2v4.4h4.4"/>
                 <path d="M9.2 15.4l2-2.8 2 3.6 1.8-2.2"/>
@@ -352,7 +454,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Laudos técnicos de caracterização de agentes nocivos, aposentadoria especial, insalubridade e periculosidade.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3.2 4.8h17.6v10.4H3.2z"/><path d="M9.2 20.4h5.6M12 15.2v5.2"/>
                 <path d="M7.4 11.6l3-2.6 2.2 2 3.6-3"/><path d="M16.2 8v2.6h-2.6" transform="translate(.2 -.4)"/>
@@ -362,7 +464,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>Geração e envio dos eventos de saúde e segurança (S-2210, S-2220 e S-2240) sem sobressaltos com o fisco.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4.4 15.2a7.6 7.6 0 0 1 15.2 0"/><path d="M2.4 15.2h19.2"/>
                 <path d="M9.6 8.4V6.2a2.4 2.4 0 0 1 4.8 0v2.2"/>
@@ -377,65 +479,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ================= 4. INSTALAÇÕES PREDIAIS ===================== -->
-  <section class="section section--subtle scope" id="instalacoes-prediais">
+  <!-- ============================ 3. PPCI & AVCB ============================ -->
+  <section class="section section--subtle scope" id="ppci-avcb">
     <div class="container">
       <div class="scope__layout">
 
         <div data-reveal>
-          <p class="eyebrow">Engenharia de Projetos</p>
-          <h2 class="scope__title">Projetos de Instalações Prediais em BIM</h2>
+          <p class="eyebrow" style="color: var(--color-orange);">Prevenção contra Incêndio</p>
+          <h2 class="scope__title" style="color: var(--color-navy);">Projetos PPCI e Licenciamento AVCB / CLCB</h2>
         </div>
 
         <div class="scope__body" data-reveal data-delay="1">
-          <p>Desenvolvimento de projetos complementares integrados e modelados em BIM, garantindo máxima precisão executiva e zero interferência na obra.</p>
+          <p>Elaboramos projetos técnicos rigorosamente adequados às Instruções Técnicas do Corpo de Bombeiros e gerenciamos todo o processo de regularização até a emissão do certificado final da sua edificação.</p>
         </div>
 
         <ul class="svc" data-reveal data-delay="2">
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2.25c-5.384 0-9.75 4.366-9.75 9.75 0 7.142 9.75 9.75 9.75 9.75s9.75-2.608 9.75-9.75c0-5.384-4.366-9.75-9.75-9.75zm0 13a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5z"/>
+                <path d="M12 2.7l7.2 3v5.4c0 4.3-3 8.3-7.2 9.6-4.2-1.3-7.2-5.3-7.2-9.6V5.7l7.2-3z"/>
+                <path d="M12 8.6c1.4 1.5 2.1 2.7 2.1 3.7a2.1 2.1 0 1 1-4.2 0c0-1 .7-2.2 2.1-3.7z"/>
               </svg>
             </span>
-            <h3 class="svc__title">Instalações de Água Fria e Quente</h3>
-            <p>Dimensionamento completo da rede hidráulica, barriletes, reserva técnica, aquecimento e pressupostos de pressão com detalhamento em 3D.</p>
+            <h3 class="svc__title">Elaboração de Projeto PPCI</h3>
+            <p>Projetos técnicos (PT) e simplificados (PTS), dimensionamento de redes de hidrantes, alarmes, iluminação, extintores e rotas de fuga.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"/>
+                <path d="M6.8 3.2h7l4.4 4.4v13.2H6.8z"/><path d="M13.8 3.2v4.4h4.4"/>
+                <path d="M9.4 14.8l1.9 1.9 3.5-3.9"/>
               </svg>
             </span>
-            <h3 class="svc__title">Instalações de Esgoto e Pluviais</h3>
-            <p>Projetos de recolhimento, tratamento e escoamento sanitário e pluvial, alinhados às normas técnicas de caimento e ventilação.</p>
+            <h3 class="svc__title">Aprovação no Corpo de Bombeiros</h3>
+            <p>Protocolo, gerenciamento documental e atendimento ágil a exigências técnicas junto ao Corpo de Bombeiros da PMESP.</p>
           </li>
           <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
+            <span class="svc__icon" aria-hidden="true" style="color: var(--color-orange);">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                <path d="M6.6 2.9h10.8v14.6H6.6z"/><path d="M9.2 6.6h5.6M9.2 9.6h5.6M9.2 12.6h3.4"/>
+                <path d="M12 17.5l2.6 1.8v2.4L12 20.1l-2.6 1.6v-2.4z"/>
               </svg>
             </span>
-            <h3 class="svc__title">Instalações de Gás (GLP / GN)</h3>
-            <p>Dimensionamento seguro de redes de distribuição de gás combustível, centrais de GLP e prumadas com estrita observância normativa.</p>
-          </li>
-          <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
-            </span>
-            <h3 class="svc__title">Instalações Elétricas</h3>
-            <p>Projetos de distribuição elétrica predial e industrial, quadros de carga, circuitos, iluminação e proteção contra surtos.</p>
-          </li>
-          <li class="svc__item">
-            <span class="svc__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 9h2M13 9h2M13 13h2"/>
-              </svg>
-            </span>
-            <h3 class="svc__title">Projetos Estruturais em BIM</h3>
-            <p>Dimensionamento e detalhamento de estruturas em concreto armado e metálicas, focados em economia de materiais, desempenho e segurança.</p>
+            <h3 class="svc__title">Emissão e Renovação de AVCB / CLCB</h3>
+            <p>Vistorias prévias no local, testes de equipamentos e acompanhamento presencial na vistoria oficial dos Bombeiros.</p>
           </li>
         </ul>
 
@@ -443,44 +530,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ======================= 5. DIFERENCIAIS ======================== -->
+  <!-- ======================= 4. DIFERENCIAIS ======================== -->
   <section class="section" id="diferenciais">
     <div class="container">
       <div class="diff__layout">
 
         <div class="section__head diff__head" data-reveal>
-          <p class="eyebrow">Como trabalhamos</p>
-          <h2 class="section__title">Prazo, preço e responsabilidade técnica</h2>
-          <p class="section__intro">Quatro pilares que sustentam a atuação da PFR em projetos e segurança do trabalho.</p>
+          <p class="eyebrow" style="color: var(--color-orange);">Como trabalhamos</p>
+          <h2 class="section__title" style="color: var(--color-navy);">Prazo, preço e responsabilidade técnica</h2>
+          <p class="section__intro">Quatro pilares que sustentam a atuação da PFR em segurança do trabalho e regularização contra incêndio.</p>
         </div>
 
         <ol class="edlist">
           <li class="edlist__item" data-reveal>
-            <span class="edlist__idx" aria-hidden="true">01</span>
+            <span class="edlist__idx" aria-hidden="true" style="color: var(--color-orange);">01</span>
             <div class="edlist__body">
               <h3 class="edlist__title">Prazo e preço em contrato</h3>
-              <p>O escopo e os prazos das etapas de projeto e regularização ficam garantidos por contrato antes do início do trabalho.</p>
+              <p>O escopo e os prazos das etapas de laudos e regularização ficam garantidos por contrato antes do início do trabalho.</p>
             </div>
           </li>
           <li class="edlist__item" data-reveal data-delay="1">
-            <span class="edlist__idx" aria-hidden="true">02</span>
+            <span class="edlist__idx" aria-hidden="true" style="color: var(--color-orange);">02</span>
             <div class="edlist__body">
               <h3 class="edlist__title">Atendimento ágil e Proposta Técnica</h3>
-              <p>Contato direto com especialistas e propostas claras entregues em até 2 dias úteis para planejar com precisão a sua obra.</p>
+              <p>Contato direto com especialistas e propostas claras entregues em até 2 dias úteis para planejar a conformidade da sua empresa.</p>
             </div>
           </li>
           <li class="edlist__item" data-reveal data-delay="2">
-            <span class="edlist__idx" aria-hidden="true">03</span>
+            <span class="edlist__idx" aria-hidden="true" style="color: var(--color-orange);">03</span>
             <div class="edlist__body">
-              <h3 class="edlist__title">Modelagem em BIM e Compatibilização</h3>
-              <p>Compatibilizamos instalações prediais e PPCI em plataforma BIM, eliminando interferências antes da obra começar.</p>
+              <h3 class="edlist__title">Projetos Técnicos Otimizados</h3>
+              <p>Compatibilizamos as exigências do Corpo de Bombeiros e Ministério do Trabalho, evitando custos desnecessários com obras ou adequações.</p>
             </div>
           </li>
           <li class="edlist__item" data-reveal data-delay="3">
-            <span class="edlist__idx" aria-hidden="true">04</span>
+            <span class="edlist__idx" aria-hidden="true" style="color: var(--color-orange);">04</span>
             <div class="edlist__body">
               <h3 class="edlist__title">Sólida Experiência de Campo</h3>
-              <p>Mais de 15 anos de atuação, com Engenheiro Responsável somando mais de 50 mil m² aprovados e entregues.</p>
+              <p>Mais de 15 anos de atuação, com Engenheiro Responsável somando mais de 50 mil m² aprovados e regularizados.</p>
             </div>
           </li>
         </ol>
@@ -489,39 +576,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ==================== 6. METODOLOGIA ==================== -->
-  <section class="section section--dark" id="metodologia">
+  <!-- ==================== 5. METODOLOGIA ==================== -->
+  <section class="section section--dark" id="metodologia" style="background-color: var(--color-navy); padding: 60px 0;">
     <div class="container split">
 
       <div class="split__text">
-        <p class="eyebrow eyebrow--on-dark">Metodologia Técnica</p>
-        <h2 class="section__title">Compatibilização resolvida na tela, não no canteiro</h2>
-        <p>Erros de compatibilização entre projetos resultam em retrabalhos custosos na obra e atrasos na obtenção de licenças.</p>
-        <p>Na PFR, unimos o rigor das normas do Corpo de Bombeiros e Ministério do Trabalho ao fluxo de trabalho em BIM. Todas as instalações são modeladas para garantir perfeita integridade física e aprovações sem interrupções.</p>
+        <p class="eyebrow eyebrow--on-dark" style="color: var(--color-orange);">Nossa Metodologia</p>
+        <h2 class="section__title" style="color: #FFF;">Projetos Eficientes, Seguros e Sem Burocracia</h2>
+        <p>Seguimos um fluxo técnico estruturado para garantir que a sua empresa atinja 100% de conformidade com agilidade:</p>
+        <ol style="margin-top: 15px; padding-left: 20px; line-height: 1.8; color: #E2E8F0;">
+          <li><strong>Diagnóstico:</strong> Análise detalhada, levantamento de riscos e necessidades legais.</li>
+          <li><strong>Planejamento e Engenharia:</strong> Desenvolvimento de projetos técnicos e documentação customizada.</li>
+          <li><strong>Aprovação e Regularização:</strong> Gestão completa dos trâmites burocráticos junto aos órgãos competentes.</li>
+          <li><strong>Implantação e Suporte:</strong> Execução correta, capacitação de equipes e entrega final.</li>
+        </ol>
       </div>
 
-      <figure class="split__media" data-reveal>
-        <span class="media">
-          <img src="/imagens/metodologia-compatibilizacao.webp" alt="Compatibilização tridimensional de instalações de segurança contra incêndio e infraestrutura predial" width="1600" height="1002" loading="lazy" decoding="async">
+      <figure class="split__media" data-reveal style="text-align: center;">
+        <span class="media" style="border-radius: 8px; overflow: hidden; display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <img src="/imagens/metodologia-compatibilizacao.webp.jpg" alt="Fluxo da Metodologia PFR Engenharia: Diagnóstico, Planejamento, Aprovação e Implantação" width="1600" height="900" loading="lazy" decoding="async" style="width: 100%; height: auto;">
         </span>
       </figure>
 
     </div>
   </section>
 
-  <!-- ========================= 7. PORTFÓLIO ========================== -->
+  <!-- ====================== 6. NÚMEROS DE AUTORIDADE ================= -->
+  <section class="section section--navy" id="numeros" style="padding: 70px 0;">
+    <div class="container">
+
+      <div class="section__head" data-reveal style="text-align: center; margin-bottom: 40px;">
+        <p class="eyebrow eyebrow--on-dark" style="color: var(--color-orange);">Segurança Jurídica e Agilidade</p>
+        <h2 class="section__title" style="color: #FFF;">Experiência Técnica Comprovada em Campo</h2>
+      </div>
+
+      <div class="stats" style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;">
+        <div class="stat" data-reveal style="text-align: center;">
+          <span class="stat__num" data-count="50" data-count-prefix="+" data-count-suffix=" mil m²" style="font-size: 2.8rem; font-weight: 800; color: var(--color-orange);">+50 mil m²</span>
+          <p class="stat__label" style="color: #E2E8F0; font-size: 1.1rem; margin-top: 5px;">aprovados e regularizados</p>
+        </div>
+        <div class="stat" data-reveal data-delay="1" style="text-align: center;">
+          <span class="stat__num" data-count="15" data-count-suffix=" anos" style="font-size: 2.8rem; font-weight: 800; color: var(--color-orange);">15 anos</span>
+          <p class="stat__label" style="color: #E2E8F0; font-size: 1.1rem; margin-top: 5px;">de atuação no mercado</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================= 7. PORTFÓLIO (PPCI APENAS) ========================== -->
   <section class="section" id="portfolio">
     <div class="container">
 
       <div class="section__head" data-reveal>
-        <p class="eyebrow">Portfólio</p>
-        <h2 class="section__title">Projetos PPCI e Instalações Entregues</h2>
-        <p class="section__intro">Confira amostras de projetos de combate a incêndio (PPCI) aprovados e instalações modeladas em BIM.</p>
-      </div>
-
-      <div class="folio__group" data-reveal>
-        <h3 class="folio__grouptitle">Projetos PPCI Aprovados no Corpo de Bombeiros</h3>
-        <p class="folio__groupintro">Plantas, cortes, esquemas de hidrantes e rotas de fuga para empreendimentos comerciais e industriais.</p>
+        <p class="eyebrow" style="color: var(--color-orange);">Portfólio de Projetos</p>
+        <h2 class="section__title" style="color: var(--color-navy);">Projetos PPCI Aprovados no Corpo de Bombeiros</h2>
+        <p class="section__intro">Confira amostras de pranchas técnicas, plantas baixas, redes de hidrantes e rotas de fuga desenvolvidas para aprovação oficial.</p>
       </div>
 
       <div class="folio" id="folioPpci" data-gallery="ppci">
@@ -531,7 +641,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <img src="/imagens/portfolio/ppci-1-modelo-3d-edificacao.webp" alt="Modelo 3D da edificação usada como base do projeto PPCI" width="1087" height="454" loading="lazy" decoding="async">
           </span>
           <h4 class="folio__title">Modelo 3D da edificação</h4>
-          <button type="button" class="folio__btn" data-lb="6" aria-label="Ampliar imagem: Modelo 3D da edificação">Ampliar</button>
+          <button type="button" class="folio__btn" data-lb="0" aria-label="Ampliar imagem: Modelo 3D da edificação">Ampliar</button>
         </article>
 
         <article class="folio__card" data-reveal data-delay="1">
@@ -539,7 +649,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <img src="/imagens/portfolio/ppci-2-planta-baixa-hidrantes.webp" alt="Planta baixa do PPCI com rede de hidrantes, extintores e sinalização de emergência" width="995" height="569" loading="lazy" decoding="async">
           </span>
           <h4 class="folio__title">Planta baixa: hidrantes e sinalização</h4>
-          <button type="button" class="folio__btn" data-lb="7" aria-label="Ampliar imagem: Planta baixa: hidrantes e sinalização">Ampliar</button>
+          <button type="button" class="folio__btn" data-lb="1" aria-label="Ampliar imagem: Planta baixa: hidrantes e sinalização">Ampliar</button>
         </article>
 
         <article class="folio__card" data-reveal data-delay="2">
@@ -547,56 +657,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <img src="/imagens/portfolio/ppci-3-planta-cobertura-elevacoes.webp" alt="Prancha de PPCI com planta de cobertura e elevações da edificação" width="996" height="568" loading="lazy" decoding="async">
           </span>
           <h4 class="folio__title">Planta de cobertura e elevações</h4>
-          <button type="button" class="folio__btn" data-lb="8" aria-label="Ampliar imagem: Planta de cobertura e elevações">Ampliar</button>
-        </article>
-
-        <article class="folio__card" data-reveal>
-          <span class="folio__media">
-            <img src="/imagens/portfolio/ppci-4-elevacoes-cortes.webp" alt="Prancha de PPCI com elevações e cortes indicando a sinalização de emergência" width="993" height="564" loading="lazy" decoding="async">
-          </span>
-          <h4 class="folio__title">Elevações e cortes do PPCI</h4>
-          <button type="button" class="folio__btn" data-lb="9" aria-label="Ampliar imagem: Elevações e cortes do PPCI">Ampliar</button>
-        </article>
-
-        <article class="folio__card" data-reveal data-delay="1">
-          <span class="folio__media">
-            <img src="/imagens/portfolio/ppci-5-detalhes-hidrante-bomba.webp" alt="Prancha de detalhes do PPCI: hidrante de parede, bomba de incêndio e quadro de sinalização" width="846" height="586" loading="lazy" decoding="async">
-          </span>
-          <h4 class="folio__title">Detalhes de hidrante e bomba de incêndio</h4>
-          <button type="button" class="folio__btn" data-lb="10" aria-label="Ampliar imagem: Detalhes de hidrante e bomba de incêndio">Ampliar</button>
-        </article>
-
-      </div>
-
-      <div class="folio__group" data-reveal style="margin-top: 3rem;">
-        <h3 class="folio__grouptitle">Desenvolvimento de projetos de instalações prediais em BIM</h3>
-        <p class="folio__groupintro">Modelagem 3D, detalhamento e compatibilização técnica de redes prediais.</p>
-      </div>
-
-      <div class="folio" id="folio" data-gallery="hidrossanitario">
-
-        <article class="folio__card" data-reveal>
-          <span class="folio__media">
-            <img src="/imagens/portfolio/portfolio-1-modelo-bim-instalacao.webp" alt="Modelo BIM: desenvolvimento de projetos de instalações prediais" width="1032" height="457" loading="lazy" decoding="async">
-          </span>
-          <h4 class="folio__title">Modelo BIM: desenvolvimento de instalações</h4>
-          <button type="button" class="folio__btn" data-lb="0" aria-label="Ampliar imagem: Modelo BIM: desenvolvimento de instalações">Ampliar</button>
-        </article>
-
-        <article class="folio__card" data-reveal data-delay="1">
-          <span class="folio__media">
-            <img src="/imagens/portfolio/portfolio-2-modelo-3d-rede.webp" alt="Modelo 3D: rede técnica predial" width="864" height="465" loading="lazy" decoding="async">
-          </span>
-          <h4 class="folio__title">Modelo 3D: rede técnica predial</h4>
-          <button type="button" class="folio__btn" data-lb="2" aria-label="Ampliar imagem: Modelo 3D: rede técnica predial">Ampliar</button>
-        </article>
-
-        <article class="folio__card" data-reveal data-delay="2">
-          <span class="folio__media">
-            <img src="/imagens/portfolio/portfolio-4-modelo-3d-estrutura.webp" alt="Modelo 3D: compatibilização predial com a estrutura" width="974" height="435" loading="lazy" decoding="async">
-          </span>
-          <h4 class="folio__title">Modelo 3D: compatibilização estrutural</h4>
-          <button type="button" class="folio__btn" data-lb="5" aria-label="Ampliar imagem: Modelo 3D: compatibilização estrutural">Ampliar</button>
+          <button type="button" class="folio__btn" data-lb="2" aria-label="Ampliar imagem: Planta de cobertura e elevações">Ampliar</button>
         </article>
 
       </div>
@@ -604,87 +665,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ========================= 8. COMPARATIVO ======================== -->
-  <section class="section section--subtle" id="comparativo">
-    <div class="container">
-
-      <div class="section__head" data-reveal>
-        <p class="eyebrow">O que isso evita</p>
-        <h2 class="section__title">Sua empresa em conformidade e sem atrasos</h2>
-      </div>
-
-      <div class="vs">
-
-        <article class="vs__card vs__card--market" data-reveal>
-          <h3 class="vs__cardtitle">Sem assessoria especializada</h3>
-          <ul class="vs__list">
-            <li>
-              <svg class="vs__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-              Risco de interdição pelo Corpo de Bombeiros e entraves no Alvará.
-            </li>
-            <li>
-              <svg class="vs__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-              Notificações e multas por falhas na Nova NR-01, NR-12, PGR, LTCAT ou eSocial.
-            </li>
-            <li>
-              <svg class="vs__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-              Incompatibilidade de instalações descoberta durante a execução da obra.
-            </li>
-          </ul>
-        </article>
-
-        <article class="vs__card vs__card--brand" data-reveal data-delay="1">
-          <h3 class="vs__cardtitle">Com a PFR Engenharia</h3>
-          <ul class="vs__list">
-            <li>
-              <svg class="vs__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
-              Projetos otimizados para emissão célere de AVCB e CLCB.
-            </li>
-            <li>
-              <svg class="vs__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
-              Engenharia de Segurança completa com gestão de riscos psicossociais e eSocial.
-            </li>
-            <li>
-              <svg class="vs__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
-              Desenvolvimento de instalações prediais em BIM sem retrabalho.
-            </li>
-          </ul>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================== 9. NÚMEROS DE AUTORIDADE ================= -->
-  <section class="section section--navy" id="numeros">
-    <div class="container">
-
-      <div class="section__head" data-reveal>
-        <p class="eyebrow eyebrow--on-dark">Números</p>
-        <h2 class="section__title">Experiência técnica comprovada</h2>
-      </div>
-
-      <div class="stats">
-        <div class="stat" data-reveal>
-          <span class="stat__num" data-count="50" data-count-prefix="+" data-count-suffix=" mil m²">+50 mil m²</span>
-          <p class="stat__label">entregues pelo Engenheiro Responsável</p>
-        </div>
-        <div class="stat" data-reveal data-delay="1">
-          <span class="stat__num" data-count="15" data-count-suffix=" anos">15 anos</span>
-          <p class="stat__label">de atuação no mercado</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================ 10. FAQ ============================= -->
+  <!-- ============================ 8. FAQ ============================= -->
   <section class="section section--subtle" id="faq">
     <div class="container">
 
       <div class="section__head" data-reveal>
-        <p class="eyebrow">Perguntas frequentes</p>
-        <h2 class="section__title">Perguntas frequentes sobre nossos serviços</h2>
+        <p class="eyebrow" style="color: var(--color-orange);">Perguntas frequentes</p>
+        <h2 class="section__title" style="color: var(--color-navy);">Dúvidas Frequentes sobre Segurança e Licenciamentos</h2>
       </div>
 
       <div class="faq" id="faqList">
@@ -697,7 +684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </button>
           </h3>
           <div class="faq__panel" id="faq-p1" role="region" aria-labelledby="faq-b1" hidden>
-            <p>O CLCB aplica-se a edificações de menor porte e baixo risco. O AVCB é exigido para áreas maiores ou de risco elevado, exigindo um Projeto Técnico detalhado.</p>
+            <p>O CLCB aplica-se a edificações de menor porte e baixo risco. O AVCB é exigido para áreas maiores ou de risco elevado, exigindo um Projeto Técnico detalhado (PPCI).</p>
           </div>
         </div>
 
@@ -716,24 +703,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="faq__item" data-reveal>
           <h3 class="faq__q">
             <button type="button" class="faq__btn" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
-              <span>Quais projetos de instalações prediais em BIM são oferecidos?</span>
+              <span>Como funciona o envio dos eventos de SST ao eSocial?</span>
               <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             </button>
           </h3>
           <div class="faq__panel" id="faq-p3" role="region" aria-labelledby="faq-b3" hidden>
-            <p>Desenvolvemos projetos completos de instalações de água fria/quente, esgoto/pluviais, redes de gás e instalações elétricas.</p>
-          </div>
-        </div>
-
-        <div class="faq__item" data-reveal>
-          <h3 class="faq__q">
-            <button type="button" class="faq__btn" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
-              <span>Em quanto tempo recebo a proposta técnica?</span>
-              <svg class="faq__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </button>
-          </h3>
-          <div class="faq__panel" id="faq-p4" role="region" aria-labelledby="faq-b4" hidden>
-            <p>Atendemos imediatamente pelo WhatsApp para entender seu caso e entregamos o orçamento formal detalhado em até 2 dias úteis.</p>
+            <p>Geramos e enviamos os eventos S-2210 (CAT), S-2220 (ASO) e S-2240 (Agentes Nocivos) diretamente no sistema do Governo com total controle das informações técnicas.</p>
           </div>
         </div>
 
@@ -741,17 +716,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ======================== 11. CTA FINAL ========================== -->
-  <section class="section section--dark" id="orcamento">
+  <!-- ======================== 9. CTA FINAL ========================== -->
+  <section class="section section--cta-final" id="orcamento">
     <div class="container">
-      <div class="final__inner" data-reveal>
-        <p class="eyebrow eyebrow--on-dark">Fale com os Especialistas</p>
-        <h2 class="final__title">Garanta a aprovação de seu PPCI, Segurança do Trabalho e Projetos em BIM</h2>
-        <p class="final__body">Converse com nossos engenheiros em tempo real e receba uma proposta personalizada com prazo e preço definidos em contrato.</p>
+      <div class="final__inner" data-reveal style="text-align: center; max-width: 750px; margin: 0 auto;">
+        <p class="eyebrow eyebrow--on-dark" style="color: var(--color-orange);">Fale com os Especialistas</p>
+        <h2 class="final__title" style="color: #FFF; font-size: 2.1rem; margin-bottom: 1rem;">Garanta a aprovação do seu AVCB/PPCI e conformidade total em Segurança do Trabalho</h2>
+        <p class="final__body" style="color: #E2E8F0; font-size: 1.1rem; margin-bottom: 2rem;">Converse com nossos engenheiros em tempo real e receba uma proposta personalizada com prazo e preço definidos em contrato.</p>
         <div class="final__actions">
           <a id="cta-whatsapp3" class="btn btn--primary" href="https://wa.me/5514981290140?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20engenheiro." target="_blank" rel="noopener"
-       aria-label="Falar com Engenheiro no WhatsApp">Falar com Engenheiro no WhatsApp
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+             aria-label="Falar com Engenheiro no WhatsApp" style="padding: 14px 28px; font-size: 1.05rem;">Falar com Engenheiro no WhatsApp
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-left: 8px;"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
@@ -760,67 +735,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </main>
 
-<footer class="footer">
+<footer class="footer" style="background-color: var(--color-navy); color: #FFF; border-top: 3px solid var(--color-orange); padding: 40px 0 20px;">
   <div class="container">
-    <div class="footer__grid">
-
+    <div class="footer__grid" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
       <div>
-        <span class="footer__logo">
-          <img src="/imagens/logo-branca.png" alt="PFR Engenharia e Consultoria" width="677" height="653" loading="lazy" decoding="async">
-        </span>
-        <p style="margin-top:1.5rem">PFR ENGENHARIA E CONSULTORIA LTDA<br>CNPJ 24.685.381/0001-98<br>CREA 2051083</p>
+        <a href="/" aria-label="PFR Engenharia">
+          <img src="/imagens/logo.png" alt="PFR Engenharia e Consultoria" style="height: 48px; width: auto; background: #FFF; padding: 6px 12px; border-radius: 4px;">
+        </a>
       </div>
-
-      <div>
-        <h3>Contato</h3>
-        <ul class="footer__list">
-          <li><a href="https://wa.me/5514981290140?text=Ol%C3%A1%21%20Vim%20pelo%20site." target="_blank" rel="noopener">(14) 98129-0140 (WhatsApp)</a></li>
-          <li><a href="mailto:contato@pfrengenharia.com">contato@pfrengenharia.com</a></li>
-        </ul>
+      <div class="footer__legal" style="text-align: right;">
+        <p>&copy; <span id="ano">2026</span> PFR Engenharia e Consultoria LTDA. Todos os direitos reservados.</p>
+        <p style="color: #94A3B8; font-size: 0.9rem;">Projetos PPCI, Licenciamento AVCB/CLCB e Engenharia de Segurança do Trabalho.</p>
       </div>
-
-      <div>
-        <h3>Atuação</h3>
-        <ul class="footer__list">
-          <li></li>
-          <li></li>
-          <li><a href="/politica-de-privacidade/">Política de Privacidade</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="footer__legal">
-      <p>&copy; <span id="ano">2026</span> PFR Engenharia e Consultoria LTDA. Todos os direitos reservados.</p>
-      <p>Projetos PPCI, AVCB/CLCB, Engenharia de Segurança do Trabalho e Projetos de Instalações Prediais em BIM.</p>
     </div>
   </div>
 </footer>
-
-<div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
-  <p class="cookie__title">Este site usa cookies</p>
-  <p>Usamos cookies para medir o desempenho das páginas e melhorar a sua navegação. Detalhes na <a href="/politica-de-privacidade/">Política de Privacidade</a>.</p>
-  <div class="cookie__actions">
-    <button type="button" class="btn btn--primary btn--sm" id="cookieAccept">Aceitar</button>
-    <button type="button" class="btn btn--ghost-dark btn--sm" id="cookieReject">Recusar</button>
-  </div>
-</div>
-
-<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Galeria do portfólio" hidden>
-  <button type="button" class="lb__btn lb__close" id="lbClose" aria-label="Fechar galeria">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <button type="button" class="lb__btn lb__prev" id="lbPrev" aria-label="Imagem anterior">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-  </button>
-  <button type="button" class="lb__btn lb__next" id="lbNext" aria-label="Próxima imagem">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-  </button>
-  <figure class="lb__fig">
-    <img class="lb__img" id="lbImg" src="/imagens/portfolio/ppci-1-modelo-3d-edificacao.webp" alt="Projeto PPCI" width="1087" height="454" loading="lazy" decoding="async">
-    <figcaption class="lb__cap"><span id="lbCap"></span><span class="lb__count" id="lbCount"></span></figcaption>
-  </figure>
-</div>
 
 <script src="/js/app.js" defer></script>
 <script src="/js/animations.js" defer></script>
